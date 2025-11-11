@@ -1,1 +1,30 @@
 @import "tailwindcss";
+
+/* Custom styles */
+.max-container {
+    @apply max-w-[1200px] mx-auto px-4;
+}
+
+.main-bg {
+    @apply bg-linear-to-br from-indigo-50 via-white to-purple-50 text-gray-900 min-h-screen;
+}
+
+.hero-section {
+    @apply bg-linear-to-r from-indigo-600 to-purple-600 text-white py-20 px-6 text-center;
+}
+
+.section-padding {
+    @apply py-20 px-6;
+}
+
+.section-padding-bg {
+    @apply py-20 px-6;
+}
+
+.section-title {
+    @apply text-3xl md:text-4xl font-bold text-center text-gray-900 mb-6;
+}
+
+.section-subtitle {
+    @apply text-center text-lg text-gray-600 mb-12 max-w-3xl mx-auto;
+}

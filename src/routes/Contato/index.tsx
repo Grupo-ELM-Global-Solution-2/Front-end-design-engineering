@@ -23,9 +23,9 @@ export default function Contato() {
     };
 
     return (
-        <main className="bg-linear-to-br from-indigo-50 via-white to-purple-50 text-gray-900 min-h-screen">
+        <main className="main-bg">
             {/* Hero Section */}
-            <section className="bg-linear-to-r from-indigo-600 to-purple-600 text-white py-20 px-6 text-center">
+            <section className="hero-section">
                 <div className="max-container">
                     <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">Entre em Contato</h1>
                     <p className="text-xl text-indigo-100 max-w-2xl mx-auto">Estamos aqui para ajudar você a dar o próximo passo na sua carreira tech</p>

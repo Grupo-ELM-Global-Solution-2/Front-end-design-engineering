@@ -1,52 +1,18 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { faqs } from '../../data/faq';
 
-export default function FAQ() {
+export default function Faq() {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     const toggleFAQ = (index: number) => {
         setOpenIndex(openIndex === index ? null : index);
     };
 
-    const faqs = [
-        {
-            question: "O que é a ReIntegrAI?",
-            answer: "A ReIntegrAI é uma plataforma inteligente que utiliza inteligência artificial para identificar o perfil do usuário, criar trilhas personalizadas de aprendizado e acelerar a entrada no mercado digital, especialmente para profissionais em transição de carreira."
-        },
-        {
-            question: "Como funciona a avaliação de perfil?",
-            answer: "Através de um questionário interativo, nossa IA analisa suas habilidades, interesses e objetivos para criar um roadmap personalizado com cursos, projetos e recursos alinhados ao seu ritmo e meta profissional."
-        },
-        {
-            question: "A plataforma é gratuita?",
-            answer: "Sim, oferecemos uma avaliação gratuita e trilhas básicas. Para acesso completo com acompanhamento gamificado, projetos reais e mentoria personalizada, há opções premium."
-        },
-        {
-            question: "Quais áreas de tecnologia são cobertas?",
-            answer: "Cobrimos frontend, backend, ciência de dados, desenvolvimento mobile, full stack e outras áreas emergentes do mercado tech."
-        },
-        {
-            question: "Preciso de experiência prévia para começar?",
-            answer: "Não! A plataforma é projetada para todos os níveis, desde iniciantes até profissionais experientes que querem evoluir."
-        },
-        {
-            question: "Como acompanho meu progresso?",
-            answer: "Utilizamos um sistema gamificado com conquistas, níveis e desafios para manter você motivado durante toda a jornada."
-        },
-        {
-            question: "Há suporte da comunidade?",
-            answer: "Sim, conecte-se com outros profissionais em transição de carreira através da nossa comunidade ativa."
-        },
-        {
-            question: "Posso acessar de qualquer dispositivo?",
-            answer: "Absolutamente! A plataforma é responsiva e funciona perfeitamente em desktop, tablet e mobile."
-        }
-    ];
-
     return (
-        <main className="bg-linear-to-br from-indigo-50 via-white to-purple-50 text-gray-900 min-h-screen">
+        <main className="main-bg">
             {/* Hero Section */}
-            <section className="bg-linear-to-r from-indigo-600 to-purple-600 text-white py-20 px-6 text-center">
+            <section className="hero-section">
                 <div className="max-container">
                     <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
                         Perguntas Frequentes

@@ -1,0 +1,375 @@
+{
+  "usuarios": [
+    {
+      "id": "1",
+      "nome": "João Silva",
+      "email": "joao@example.com",
+      "password": "123456",
+      "telefone": "(11) 99999-9999",
+      "biografia": "Desenvolvedor apaixonado por tecnologia e inovação."
+    }
+  ],
+  "avaliacoes": [
+    {
+      "id": "1",
+      "idUser": "1",
+      "nome": "João Silva",
+      "email": "joao@example.com",
+      "interesse": "frontend",
+      "experiencia": "basica",
+      "objetivo": "emprego",
+      "disponibilidade": "10-20",
+      "motivacao": "carreira",
+      "habilidades": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "trilha": [
+        {
+          "id": "1",
+          "titulo": "Fundamentos Web (HTML/CSS)",
+          "descricao": "Aprenda os conceitos básicos de HTML e CSS",
+          "duracao": "2 semanas",
+          "recursos": [
+            "MDN Web Docs",
+            "freeCodeCamp"
+          ]
+        },
+        {
+          "id": "2",
+          "titulo": "JavaScript Moderno",
+          "descricao": "Domine JavaScript ES6+",
+          "duracao": "4 semanas",
+          "recursos": [
+            "JavaScript.info",
+            "Eloquent JavaScript"
+          ]
+        },
+        {
+          "id": "3",
+          "titulo": "React & Ecossistema",
+          "descricao": "Construa aplicações com React",
+          "duracao": "6 semanas",
+          "recursos": [
+            "React Docs",
+            "React Router"
+          ]
+        }
+      ]
+    }
+  ],
+  "progresso": [
+    {
+      "id": "264a",
+      "idUser": "1",
+      "status": "em andamento",
+      "idModulo": "1"
+    }
+  ],
+  "trilhas": [
+    {
+      "id": "frontend-basic",
+      "nome": "Frontend Básico",
+      "descricao": "Trilha completa para desenvolvedores frontend iniciantes",
+      "etapas": [
+        {
+          "id": "1",
+          "titulo": "Fundamentos Web (HTML/CSS)",
+          "descricao": "Aprenda os conceitos básicos de HTML e CSS",
+          "duracao": "2 semanas",
+          "recursos": [
+            "MDN Web Docs",
+            "freeCodeCamp"
+          ]
+        },
+        {
+          "id": "2",
+          "titulo": "JavaScript Moderno",
+          "descricao": "Domine JavaScript ES6+",
+          "duracao": "4 semanas",
+          "recursos": [
+            "JavaScript.info",
+            "Eloquent JavaScript"
+          ]
+        },
+        {
+          "id": "3",
+          "titulo": "React & Ecossistema",
+          "descricao": "Construa aplicações com React",
+          "duracao": "6 semanas",
+          "recursos": [
+            "React Docs",
+            "React Router"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "backend-basic",
+      "nome": "Backend Básico",
+      "descricao": "Trilha completa para desenvolvedores backend iniciantes",
+      "etapas": [
+        {
+          "id": "1",
+          "titulo": "Python Fundamentals",
+          "descricao": "Aprenda Python do zero",
+          "duracao": "3 semanas",
+          "recursos": [
+            "Python Docs",
+            "Automate the Boring Stuff"
+          ]
+        },
+        {
+          "id": "2",
+          "titulo": "Django Framework",
+          "descricao": "Crie aplicações web com Django",
+          "duracao": "5 semanas",
+          "recursos": [
+            "Django Docs",
+            "Django for Beginners"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fullstack-basic",
+      "nome": "Fullstack Básico",
+      "descricao": "Trilha completa para desenvolvedores fullstack iniciantes",
+      "etapas": [
+        {
+          "id": "1",
+          "titulo": "Fundamentos Web",
+          "descricao": "HTML, CSS e JavaScript básico",
+          "duracao": "3 semanas",
+          "recursos": [
+            "MDN Web Docs",
+            "freeCodeCamp"
+          ]
+        },
+        {
+          "id": "2",
+          "titulo": "JavaScript Avançado",
+          "descricao": "Node.js e Express",
+          "duracao": "4 semanas",
+          "recursos": [
+            "Node.js Docs",
+            "Express.js Guide"
+          ]
+        },
+        {
+          "id": "3",
+          "titulo": "React & MongoDB",
+          "descricao": "Frontend moderno com banco de dados",
+          "duracao": "6 semanas",
+          "recursos": [
+            "React Docs",
+            "MongoDB University"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "data-science-basic",
+      "nome": "Data Science Básico",
+      "descricao": "Introdução à ciência de dados e machine learning",
+      "etapas": [
+        {
+          "id": "1",
+          "titulo": "Python para Data Science",
+          "descricao": "Python, NumPy e Pandas",
+          "duracao": "4 semanas",
+          "recursos": [
+            "Python Data Science Handbook",
+            "Kaggle Learn"
+          ]
+        },
+        {
+          "id": "2",
+          "titulo": "Estatística e Probabilidade",
+          "descricao": "Fundamentos matemáticos",
+          "duracao": "3 semanas",
+          "recursos": [
+            "Khan Academy",
+            "StatQuest"
+          ]
+        },
+        {
+          "id": "3",
+          "titulo": "Machine Learning",
+          "descricao": "Algoritmos e modelos",
+          "duracao": "6 semanas",
+          "recursos": [
+            "Coursera ML",
+            "Scikit-learn Docs"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mobile-basic",
+      "nome": "Mobile Básico",
+      "descricao": "Desenvolvimento de aplicativos móveis",
+      "etapas": [
+        {
+          "id": "1",
+          "titulo": "React Native Fundamentals",
+          "descricao": "Introdução ao React Native",
+          "duracao": "3 semanas",
+          "recursos": [
+            "React Native Docs",
+            "Expo Docs"
+          ]
+        },
+        {
+          "id": "2",
+          "titulo": "UI/UX para Mobile",
+          "descricao": "Design de interfaces móveis",
+          "duracao": "2 semanas",
+          "recursos": [
+            "Material Design",
+            "Human Interface Guidelines"
+          ]
+        },
+        {
+          "id": "3",
+          "titulo": "APIs e Integração",
+          "descricao": "Conectar com serviços externos",
+          "duracao": "4 semanas",
+          "recursos": [
+            "REST APIs",
+            "GraphQL"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "devops-basic",
+      "nome": "DevOps Básico",
+      "descricao": "Introdução às práticas de DevOps",
+      "etapas": [
+        {
+          "id": "1",
+          "titulo": "Linux e Terminal",
+          "descricao": "Comandos essenciais e administração",
+          "duracao": "2 semanas",
+          "recursos": [
+            "Linux Journey",
+            "Command Line Power User"
+          ]
+        },
+        {
+          "id": "2",
+          "titulo": "Git e Controle de Versão",
+          "descricao": "Versionamento avançado",
+          "duracao": "2 semanas",
+          "recursos": [
+            "Pro Git Book",
+            "GitHub Learning Lab"
+          ]
+        },
+        {
+          "id": "3",
+          "titulo": "Docker e Containers",
+          "descricao": "Containerização de aplicações",
+          "duracao": "4 semanas",
+          "recursos": [
+            "Docker Docs",
+            "Play with Docker"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cybersecurity-basic",
+      "nome": "Cybersecurity Básico",
+      "descricao": "Fundamentos da segurança da informação",
+      "etapas": [
+        {
+          "id": "1",
+          "titulo": "Conceitos de Segurança",
+          "descricao": "Princípios básicos de segurança",
+          "duracao": "2 semanas",
+          "recursos": [
+            "OWASP",
+            "Cybrary"
+          ]
+        },
+        {
+          "id": "2",
+          "titulo": "Criptografia",
+          "descricao": "Criptografia simétrica e assimétrica",
+          "duracao": "3 semanas",
+          "recursos": [
+            "Cryptography Course",
+            "Practical Cryptography"
+          ]
+        },
+        {
+          "id": "3",
+          "titulo": "Ethical Hacking",
+          "descricao": "Introdução ao pentesting",
+          "duracao": "5 semanas",
+          "recursos": [
+            "HackTheBox",
+            "TryHackMe"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "game-dev-basic",
+      "nome": "Game Development Básico",
+      "descricao": "Criação de jogos digitais",
+      "etapas": [
+        {
+          "id": "1",
+          "titulo": "Unity Fundamentals",
+          "descricao": "Introdução ao Unity Engine",
+          "duracao": "3 semanas",
+          "recursos": [
+            "Unity Learn",
+            "Brackeys Tutorials"
+          ]
+        },
+        {
+          "id": "2",
+          "titulo": "C# para Games",
+          "descricao": "Programação em C#",
+          "duracao": "3 semanas",
+          "recursos": [
+            "Microsoft C# Docs",
+            "Game Programming Patterns"
+          ]
+        },
+        {
+          "id": "3",
+          "titulo": "Game Design",
+          "descricao": "Design e prototipagem",
+          "duracao": "4 semanas",
+          "recursos": [
+            "Game Design Book",
+            "GDC Talks"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "default",
+      "nome": "Lógica de Programação",
+      "descricao": "Fundamentos da programação",
+      "etapas": [
+        {
+          "id": "1",
+          "titulo": "Lógica de Programação",
+          "descricao": "Fundamentos da programação",
+          "duracao": "2 semanas",
+          "recursos": [
+            "Khan Academy",
+            "Codecademy"
+          ]
+        }
+      ]
+    }
+  ]
+}

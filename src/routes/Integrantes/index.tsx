@@ -5,15 +5,11 @@ import fotoMilton from '/img/imagens-integrantes/foto-milton.jpeg';
 
 export default function Integrantes(){
     return(
-    <main className="bg-linear-to-br from-indigo-50 via-white to-purple-50 text-gray-900 min-h-screen">
-        <section className="bg-linear-to-r from-indigo-600 to-purple-600 text-white py-20 px-6 text-center">
+    <main className="main-bg">
+        <section className="hero-section">
             <div className="max-container">
-                <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                    Nossa Equipe
-                </h1>
-                <p className="text-xl text-indigo-100 max-w-2xl mx-auto">
-                    Conheça os desenvolvedores responsáveis pelo projeto ReIntegrAI
-                </p>
+                <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">Nossa Equipe</h1>
+                <p className="text-xl text-indigo-100 max-w-2xl mx-auto">Conheça os desenvolvedores responsáveis pelo projeto ReIntegrAI</p>
             </div>
         </section>
 
@@ -47,7 +43,7 @@ export default function Integrantes(){
                             <p className="text-gray-600 mb-1">RM: 566422</p>
                             <p className="text-gray-600 mb-4">Turma: 1TDSPG</p>
                             <div className="flex justify-center space-x-4">
-                                <Link to="https://www.linkedin.com/in/luz-barros-gouveia-09b147355/" aria-label="Linkedin Lucas Barros Gouveia" title="Linkedin Lucas Barros Gouveia" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800">
+                                <Link to="https://www.linkedin.com/in/lucas-barros-gouveia-09b147355/" aria-label="Linkedin Lucas Barros Gouveia" title="Linkedin Lucas Barros Gouveia" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800">
                                     <img src="https://www.svgrepo.com/show/452047/linkedin-1.svg" alt="LinkedIn" className="w-6 h-6"/>
                                 </Link>
                                 <Link to="https://github.com/LuzBGouveia" aria-label="GitHub Lucas Barros Gouveia" title="GitHub Lucas Barros Gouveia" target="_blank" rel="noopener" className="text-gray-800 hover:text-gray-600">
