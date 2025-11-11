@@ -215,92 +215,165 @@ export default function Avaliacao() {
     };
 
     return (
-        <main className="bg-gray-50 text-gray-900 min-h-screen py-12 px-6">
-            <div className="max-w-4xl mx-auto">
-                <h1 className="text-4xl font-bold text-center mb-8">Avaliação de Perfil</h1>
-                <p className="text-center text-lg mb-12">Complete seu perfil para receber uma trilha de aprendizado personalizada com IA.</p>
+        <main className="bg-linear-to-br from-indigo-50 via-white to-purple-50 text-gray-900 min-h-screen">
+            <section className="bg-linear-to-r from-indigo-600 to-purple-600 text-white py-20 px-6 text-center">
+                <div className="max-container">
+                    <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                        Avaliação de Perfil
+                    </h1>
+                    <p className="text-xl text-indigo-100 max-w-2xl mx-auto">
+                        Complete seu perfil para receber uma trilha de aprendizado personalizada com IA
+                    </p>
+                </div>
+            </section>
 
-                {/* Progress Bar */}
-                <div className="mb-8">
-                    <div className="flex justify-between mb-2">
-                        {[1, 2, 3, 4].map(step => (
-                            <div key={step} className={`flex items-center ${step < 4 ? 'flex-1' : ''}`}>
-                                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${
-                                    step <= currentStep ? 'bg-blue-600 text-white' : 'bg-gray-300 text-gray-600'
-                                }`}>
-                                    {step}
-                                </div>
-                                {step < 4 && (
-                                    <div className={`flex-1 h-1 mx-2 ${
-                                        step < currentStep ? 'bg-blue-600' : 'bg-gray-300'
-                                    }`}></div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                    <div className="flex justify-between text-sm text-gray-600">
-                        <span>Informações Pessoais</span>
-                        <span>Experiência & Habilidades</span>
-                        <span>Objetivos</span>
-                        <span>Confirmação</span>
+            {/* Why Choose ReIntegrAI Section */}
+            <section className="py-20 px-6">
+                <div className="max-container">
+                    <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-6">Por que escolher ReIntegrAI?</h2>
+                    <p className="text-center text-lg text-gray-600 mb-12 max-w-3xl mx-auto">
+                        Nossa plataforma utiliza inteligência artificial para criar trilhas de aprendizado personalizadas,
+                        ajudando profissionais em transição de carreira a entrarem no mercado tech de forma eficiente e motivadora.
+                    </p>
+                    <div className="grid md:grid-cols-3 gap-8">
+                        <div className="text-center p-8 bg-white rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                            <div className="bg-indigo-100 text-indigo-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">🎯</div>
+                            <h3 className="text-xl font-semibold text-gray-900 mb-3">Personalização IA</h3>
+                            <p className="text-gray-600">Trilhas adaptadas ao seu perfil, experiência e objetivos específicos.</p>
+                        </div>
+                        <div className="text-center p-8 bg-white rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                            <div className="bg-purple-100 text-purple-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">🚀</div>
+                            <h3 className="text-xl font-semibold text-gray-900 mb-3">Aceleração de Carreira</h3>
+                            <p className="text-gray-600">Reduza o tempo de aprendizado com conteúdo focado e prático.</p>
+                        </div>
+                        <div className="text-center p-8 bg-white rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                            <div className="bg-green-100 text-green-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">🏆</div>
+                            <h3 className="text-xl font-semibold text-gray-900 mb-3">Progresso Gamificado</h3>
+                            <p className="text-gray-600">Acompanhe seu progresso com conquistas e níveis que mantêm você motivado.</p>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <div className="bg-white p-8 rounded-lg shadow-md mb-8 hover:shadow-lg transition-shadow duration-300">
-                    <h2 className="text-2xl font-semibold mb-6">
-                        {currentStep === 1 && 'Informações Pessoais'}
-                        {currentStep === 2 && 'Sua Experiência Atual'}
-                        {currentStep === 3 && 'Seus Objetivos'}
-                        {currentStep === 4 && 'Pronto para começar!'}
-                    </h2>
-
-                    {renderStepContent()}
-
-                    {currentStep < 4 && (
-                        <div className="flex justify-between mt-8">
-                            <button onClick={prevStep} disabled={currentStep === 1} className="px-6 py-3 border border-gray-300 rounded-lg font-semibold hover:bg-gray-50 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
-                                Anterior
-                            </button>
-                            <button onClick={nextStep} className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 hover:scale-105 transition-all duration-300 shadow-md">
-                                Próximo
-                            </button>
+            {/* How It Works Section */}
+            <section className="py-20 px-6 bg-white">
+                <div className="max-container">
+                    <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-6">Como funciona</h2>
+                    <p className="text-center text-lg text-gray-600 mb-12 max-w-3xl mx-auto">
+                        Três passos simples para transformar sua carreira em tecnologia
+                    </p>
+                    <div className="grid md:grid-cols-3 gap-8">
+                        <div className="text-center">
+                            <div className="bg-indigo-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">1</div>
+                            <h3 className="text-xl font-semibold text-gray-900 mb-3">Avaliação Inteligente</h3>
+                            <p className="text-gray-600">Responda algumas perguntas sobre seu perfil e experiência atual.</p>
                         </div>
-                    )}
+                        <div className="text-center">
+                            <div className="bg-purple-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">2</div>
+                            <h3 className="text-xl font-semibold text-gray-900 mb-3">Trilha Personalizada</h3>
+                            <p className="text-gray-600">Receba um roadmap completo adaptado às suas necessidades.</p>
+                        </div>
+                        <div className="text-center">
+                            <div className="bg-green-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">3</div>
+                            <h3 className="text-xl font-semibold text-gray-900 mb-3">Acompanhamento</h3>
+                            <p className="text-gray-600">Acompanhe seu progresso com gamificação e mentoria.</p>
+                        </div>
+                    </div>
                 </div>
+            </section>
 
-                {trilha.length > 0 && (
-                    <div className="bg-white p-8 rounded-lg shadow-md animate-fade-in">
-                        <div className="text-center mb-6">
-                            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"></path>
-                                </svg>
-                            </div>
-                            <h2 className="text-2xl font-semibold text-green-900">Sua Trilha Personalizada Está Pronta!</h2>
-                            <p className="text-gray-600 mt-2">Baseada na sua avaliação, criamos um roadmap sob medida para você.</p>
-                        </div>
+            {/* Assessment Form Section */}
+            <section className="py-20 px-6">
+                <div className="max-container">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Faça sua avaliação gratuita</h2>
+                        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                            Responda algumas perguntas e receba uma trilha de aprendizado personalizada com IA
+                        </p>
+                    </div>
 
-                        <div className="grid md:grid-cols-2 gap-6 mb-8">
-                            {trilha.map((item, index) => (
-                                <div key={index} className="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg hover:bg-blue-50 hover:scale-105 transition-all duration-200">
-                                    <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
-                                        {index + 1}
+                    {/* Progress Bar */}
+                    <div className="mb-8">
+                        <div className="flex justify-between mb-2">
+                            {[1, 2, 3, 4].map(step => (
+                                <div key={step} className={`flex items-center ${step < 4 ? 'flex-1' : ''}`}>
+                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${
+                                        step <= currentStep ? 'bg-blue-600 text-white' : 'bg-gray-300 text-gray-600'
+                                    }`}>
+                                        {step}
                                     </div>
-                                    <span className="text-lg font-medium">{item}</span>
+                                    {step < 4 && (
+                                        <div className={`flex-1 h-1 mx-2 ${
+                                            step < currentStep ? 'bg-blue-600' : 'bg-gray-300'
+                                        }`}></div>
+                                    )}
                                 </div>
                             ))}
                         </div>
-
-                        <div className="bg-linear-to-r from-blue-50 to-purple-50 p-6 rounded-lg text-center">
-                            <h3 className="text-xl font-semibold text-gray-900 mb-2">Quer acessar trilhas completas?</h3>
-                            <p className="text-gray-600 mb-4">Com acompanhamento gamificado, projetos reais e mentoria personalizada.</p>
-                            <button className="bg-linear-to-r from-green-600 to-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-green-700 hover:to-blue-700 hover:scale-105 transition-all duration-300 shadow-lg">
-                                Começar Minha Jornada Gratuitamente
-                            </button>
+                        <div className="flex justify-between text-sm text-gray-600">
+                            <span>Informações Pessoais</span>
+                            <span>Experiência & Habilidades</span>
+                            <span>Objetivos</span>
+                            <span>Confirmação</span>
                         </div>
                     </div>
-                )}
-            </div>
+
+                    <div className="bg-white p-8 rounded-lg shadow-md mb-8 hover:shadow-lg transition-shadow duration-300">
+                        <h3 className="text-2xl font-semibold mb-6">
+                            {currentStep === 1 && 'Informações Pessoais'}
+                            {currentStep === 2 && 'Sua Experiência Atual'}
+                            {currentStep === 3 && 'Seus Objetivos'}
+                            {currentStep === 4 && 'Pronto para começar!'}
+                        </h3>
+
+                        {renderStepContent()}
+
+                        {currentStep < 4 && (
+                            <div className="flex justify-between mt-8">
+                                <button onClick={prevStep} disabled={currentStep === 1} className="px-6 py-3 border border-gray-300 rounded-lg font-semibold hover:bg-gray-50 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                                    Anterior
+                                </button>
+                                <button onClick={nextStep} className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 hover:scale-105 transition-all duration-300 shadow-md">
+                                    Próximo
+                                </button>
+                            </div>
+                        )}
+                    </div>
+
+                    {trilha.length > 0 && (
+                        <div className="bg-white p-8 rounded-lg shadow-md animate-fade-in">
+                            <div className="text-center mb-6">
+                                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </div>
+                                <h2 className="text-2xl font-semibold text-green-900">Sua Trilha Personalizada Está Pronta!</h2>
+                                <p className="text-gray-600 mt-2">Baseada na sua avaliação, criamos um roadmap sob medida para você.</p>
+                            </div>
+
+                            <div className="grid md:grid-cols-2 gap-6 mb-8">
+                                {trilha.map((item, index) => (
+                                    <div key={index} className="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg hover:bg-blue-50 hover:scale-105 transition-all duration-200">
+                                        <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                                            {index + 1}
+                                        </div>
+                                        <span className="text-lg font-medium">{item}</span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="bg-linear-to-r from-blue-50 to-purple-50 p-6 rounded-lg text-center">
+                                <h3 className="text-xl font-semibold text-gray-900 mb-2">Quer acessar trilhas completas?</h3>
+                                <p className="text-gray-600 mb-4">Com acompanhamento gamificado, projetos reais e mentoria personalizada.</p>
+                                <button className="bg-linear-to-r from-green-600 to-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-green-700 hover:to-blue-700 hover:scale-105 transition-all duration-300 shadow-lg">
+                                    Começar Minha Jornada Gratuitamente
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </section>
         </main>
     );
 }

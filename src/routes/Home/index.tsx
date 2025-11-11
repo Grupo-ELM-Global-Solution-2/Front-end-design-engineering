@@ -30,9 +30,9 @@ export default function Home() {
             </section>
 
             {/* Como Funciona */}
-            <section className="bg-gray-50 py-20 px-6">
-                <h2 className="text-3xl font-bold text-center text-gray-900 mb-3">Como funciona</h2>
-                <p className="text-center text-lg text-gray-600 mb-12">Três passos simples para transformar sua carreira</p>
+            <section className="section-padding-bg">
+                <h2 className="section-title">Como funciona</h2>
+                <p className="section-subtitle">Três passos simples para transformar sua carreira</p>
                 <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     
                     {/* Card 1 com hover */}
@@ -65,9 +65,9 @@ export default function Home() {
             </section>
 
             {/* Por que escolher */}
-            <section className="bg-white py-20 px-6">
-                <h2 className="text-3xl font-bold text-center text-gray-900 mb-3">Por que escolher a ReIntegrAI?</h2>
-                <p className="text-center text-lg text-gray-600 mb-12">Benefícios que fazem a diferença na sua jornada</p>
+            <section className="section-padding">
+                <h2 className="section-title">Por que escolher a ReIntegrAI?</h2>
+                <p className="section-subtitle">Benefícios que fazem a diferença na sua jornada</p>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
                     
                     {/* Card 1 com hover */}
@@ -78,8 +78,8 @@ export default function Home() {
                     
                     {/* Card 2 com hover */}
                     <div className="text-center p-6 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:scale-105 transition-all duration-300">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">Comunidade Ativa</h3>
-                        <p className="text-gray-600 text-sm">Conecte-se com outros profissionais em transição de carreira.</p>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-2">Progresso Gamificado</h3>
+                        <p className="text-gray-600 text-sm">Acompanhe seu progresso com conquistas e níveis que mantêm você motivado.</p>
                     </div>
                     
                     {/* Card 3 com hover */}
@@ -97,8 +97,8 @@ export default function Home() {
             </section>
 
             {/* Call to Action */}
-            <section className="bg-gray-50 py-20 px-6 text-center">
-                <h2 className="text-3xl font-bold text-gray-900 mb-3">Pronto para decolar na carreira tech?</h2>
+            <section className="section-padding-bg text-center">
+                <h2 className="section-title">Pronto para decolar na carreira tech?</h2>
                 <p className="text-lg text-gray-600 max-w-xl mx-auto mb-8">
                     Junte-se a milhares de profissionais que já transformaram suas carreiras com a ReIntegrAI
                 </p>
