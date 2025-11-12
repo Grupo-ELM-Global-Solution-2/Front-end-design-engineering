@@ -17,15 +17,11 @@ export interface TrilhaAPI {
 
 export interface TrilhaPersonalizada {
     id?: number;
-    idUser: number;
-    nome: string;
-    email: string;
+    idUser?: number;
     interesse: string;
     experiencia: string;
-    objetivo: string;
     disponibilidade: string;
-    motivacao: string;
-    habilidades: string[];
+    preferenciasAprendizado: string[];
     respostaIA?: string;
     modulos: Modulo[];
 }

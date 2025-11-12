@@ -20,7 +20,7 @@ export default function Perfil() {
 
         const loadUserData = async () => {
             if (userId) {
-                const user = await getUser(userId); 
+                const user = await getUser(userId);
                 if (user) {
                     setUserInfo({
                         nome: user.nome || '',
@@ -91,11 +91,11 @@ export default function Perfil() {
             {/* Profile Info Section */}
             <section className="section-padding">
                 <div className="max-container">
-                    <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
+                    <div className="card-white mb-8">
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 gap-4">
                             <h2 className="text-xl md:text-2xl font-bold text-gray-900">Informações Pessoais</h2>
                             {!isEditing ? (
-                                <button onClick={() => setIsEditing(true)} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors w-full sm:w-auto">
+                                <button onClick={() => setIsEditing(true)} className="btn-primary w-full sm:w-auto">
                                     Editar Perfil
                                 </button>
                             ) : (
@@ -103,7 +103,7 @@ export default function Perfil() {
                                     <button onClick={handleSave} className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex-1 sm:flex-none">
                                         Salvar
                                     </button>
-                                    <button onClick={handleCancel} className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 transition-colors flex-1 sm:flex-none">
+                                    <button onClick={handleCancel} className="btn-secondary flex-1 sm:flex-none">
                                         Cancelar
                                     </button>
                                 </div>
@@ -125,7 +125,7 @@ export default function Perfil() {
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Nome</label>
                                     {isEditing ? (
-                                        <input type="text" name="nome" value={userInfo.nome} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required />
+                                        <input type="text" name="nome" value={userInfo.nome} onChange={handleInputChange} className="form-input" required />
                                     ) : (
                                         <p className="text-gray-900 bg-gray-50 px-3 py-2 rounded-lg">{userInfo.nome || 'Não informado'}</p>
                                     )}
@@ -133,7 +133,7 @@ export default function Perfil() {
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">E-mail</label>
                                     {isEditing ? (
-                                        <input type="email" name="email" value={userInfo.email} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required />
+                                        <input type="email" name="email" value={userInfo.email} onChange={handleInputChange} className="form-input" required />
                                     ) : (
                                         <p className="text-gray-900 bg-gray-50 px-3 py-2 rounded-lg">{userInfo.email || 'Não informado'}</p>
                                     )}
@@ -141,7 +141,7 @@ export default function Perfil() {
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Telefone</label>
                                     {isEditing ? (
-                                        <input type="tel" name="telefone" value={userInfo.telefone} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+                                        <input type="tel" name="telefone" value={userInfo.telefone} onChange={handleInputChange} className="form-input" />
                                     ) : (
                                         <p className="text-gray-900 bg-gray-50 px-3 py-2 rounded-lg">{userInfo.telefone || 'Não informado'}</p>
                                     )}
@@ -149,7 +149,7 @@ export default function Perfil() {
                                 <div className="md:col-span-2">
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Biografia</label>
                                     {isEditing ? (
-                                        <textarea name="biografia" value={userInfo.biografia} onChange={handleInputChange} rows={3} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Conte um pouco sobre você..." />
+                                        <textarea name="biografia" value={userInfo.biografia} onChange={handleInputChange} rows={3} className="form-input" placeholder="Conte um pouco sobre você..." />
                                     ) : (
                                         <p className="text-gray-900 bg-gray-50 px-3 py-2 rounded-lg">{userInfo.biografia || 'Nenhuma bio adicionada ainda.'}</p>
                                     )}

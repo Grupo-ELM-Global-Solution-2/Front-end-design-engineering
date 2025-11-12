@@ -28,3 +28,23 @@
 .section-subtitle {
     @apply text-center text-lg text-gray-600 mb-12 max-w-3xl mx-auto;
 }
+
+.form-input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+}
+
+.card-white {
+    @apply bg-white rounded-lg shadow-lg p-8;
+}
+
+.text-center-mb8 {
+    @apply text-center mb-8;
+}
+
+.btn-primary {
+    @apply bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors;
+}
+
+.btn-secondary {
+    @apply bg-gray-300 text-gray-700 py-3 px-6 rounded-lg font-semibold hover:bg-gray-400 transition-colors;
+}

@@ -11,42 +11,30 @@
   ],
   "trilhasPersonalizadas": [
     {
-      "id": "1",
-      "idUser": 1,
-      "nome": "João Silva",
-      "email": "joao@example.com",
+      "id": "893a",
       "interesse": "frontend",
-      "experiencia": "basica",
-      "objetivo": "emprego",
+      "experiencia": "iniciante",
       "disponibilidade": "10-20",
-      "motivacao": "carreira",
-      "habilidades": [
-        "HTML",
-        "CSS",
-        "JavaScript"
+      "preferenciasAprendizado": [
+        "Vídeos",
+        "Artigos",
+        "Projetos Práticos"
       ],
-      "respostaIA": "Baseado no seu perfil, recomendo focar em React.js e TypeScript para se destacar no mercado frontend.",
+      "respostaIA": "Baseado no seu perfil, recomendo focar em frontend para se destacar no mercado. Selecionamos 2 recursos personalizados para você.",
       "modulos": [
         {
           "id": 1,
-          "titulo": "Fundamentos Web (HTML/CSS)",
-          "descricao": "Aprenda os conceitos básicos de HTML e CSS",
-          "duracao": "2 semanas",
-          "videoUrl": "https://www.youtube.com/embed/exemplo1"
+          "titulo": "React do Zero ao Avançado",
+          "descricao": "Tutorial completo de React em português do canal Programador a Bordo.",
+          "duracao": "4 horas",
+          "videoUrl": "https://www.youtube.com/watch?v=0mYq5LrQN1s"
         },
         {
           "id": 2,
-          "titulo": "JavaScript Moderno",
-          "descricao": "Domine JavaScript ES6+",
-          "duracao": "4 semanas",
-          "videoUrl": "https://www.youtube.com/embed/exemplo2"
-        },
-        {
-          "id": 3,
-          "titulo": "React & Ecossistema",
-          "descricao": "Construa aplicações com React",
-          "duracao": "6 semanas",
-          "videoUrl": "https://www.youtube.com/embed/exemplo3"
+          "titulo": "Criando Portfólio Responsivo",
+          "descricao": "Desenvolva um portfólio pessoal moderno com HTML, CSS e JS.",
+          "duracao": "5 horas",
+          "videoUrl": "https://www.youtube.com/watch?v=KErtfknVy0I"
         }
       ]
     }
