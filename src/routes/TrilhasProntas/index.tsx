@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ModuleAccordion from '../../components/ModuleAccordion/ModuleAccordion';
 import { useTrilhas } from '../../hooks/useApiTrilhas';
 import { useProgresso } from '../../hooks/useApiProgresso';
-
-import type { Trilha, Modulo } from '../../types/trilha';
+import type { Trilha, TrilhaAPI } from '../../types/trilha';
 
 const getDuracaoForTrilha = (modulos: Array<{ duracao: string }>): string => {
     const totalWeeks = modulos.reduce((total, modulo) => {
@@ -29,7 +28,7 @@ export default function TrilhasProntas() {
             const trilhasAPI = await getTrilhas();
 
             if (trilhasAPI) {
-                const trilhas: Trilha[] = trilhasAPI.map((trilhaAPI: any) => ({
+                const trilhas: Trilha[] = trilhasAPI.map((trilhaAPI: TrilhaAPI) => ({
                     id: trilhaAPI.id,
                     titulo: trilhaAPI.nome,
                     descricao: trilhaAPI.descricao,
