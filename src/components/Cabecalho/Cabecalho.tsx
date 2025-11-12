@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useAuth } from '../../hooks/useApi';
+import { useAuth } from '../../hooks/useApiUsuarios';
 
 export default function Cabecalho() {
     const [menuOpen, setMenuOpen] = useState(false);

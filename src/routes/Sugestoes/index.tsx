@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface Sugestao {
     id: string;
@@ -260,14 +260,9 @@ export default function Sugestoes() {
                                 </div>
 
                                 <div className="px-6 pb-6">
-                                    <a
-                                        href={sugestao.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="block w-full bg-blue-600 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors"
-                                    >
+                                    <Link to={sugestao.link} target="_blank" rel="noopener noreferrer" className="block w-full bg-blue-600 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors">
                                         Acessar Conteúdo
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         ))}

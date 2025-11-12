@@ -1,51 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ModuleAccordion from '../../components/ModuleAccordion/ModuleAccordion';
+import { useTrilhas } from '../../hooks/useApiTrilhas';
+import { useProgresso } from '../../hooks/useApiProgresso';
 
-interface Trilha {
-    id: string;
-    titulo: string;
-    descricao: string;
-    duracao: string;
-    nivel: string;
-    modulos: string[];
-    icone: string;
-}
+import type { Trilha, Modulo } from '../../types/trilha';
 
-interface TrilhaAPI {
-    id: string;
-    nome: string;
-    descricao: string;
-    etapas: Array<{
-        id: string;
-        titulo: string;
-        descricao: string;
-        duracao: string;
-        recursos: string[];
-    }>;
-}
-
-const getIconForTrilha = (id: string): string => {
-    const icons: { [key: string]: string } = {
-        'frontend-basic': '💻',
-        'backend-basic': '⚙️',
-        'default': '📚'
-    };
-    return icons[id] || '📚';
-};
-
-const getNivelForTrilha = (id: string): string => {
-    const niveis: { [key: string]: string } = {
-        'frontend-basic': 'Básico',
-        'backend-basic': 'Básico',
-        'default': 'Básico'
-    };
-    return niveis[id] || 'Básico';
-};
-
-const getDuracaoForTrilha = (etapas: Array<{ duracao: string }>): string => {
-    const totalWeeks = etapas.reduce((total, etapa) => {
-        const weeks = parseInt(etapa.duracao.split(' ')[0]) || 0;
+const getDuracaoForTrilha = (modulos: Array<{ duracao: string }>): string => {
+    const totalWeeks = modulos.reduce((total, modulo) => {
+        const weeks = parseInt(modulo.duracao.split(' ')[0]) || 0;
         return total + weeks;
     }, 0);
     return `${totalWeeks} semanas`;
@@ -55,54 +18,46 @@ export default function TrilhasProntas() {
     const navigate = useNavigate();
     const [selectedTrilha, setSelectedTrilha] = useState<Trilha | null>(null);
     const [trilhasDisponiveis, setTrilhasDisponiveis] = useState<Trilha[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState('');
     const [startedModules, setStartedModules] = useState<Set<number>>(new Set());
+
+    // Hooks personalizados
+    const { getTrilhas, loading: loadingTrilhas, error: errorTrilhas } = useTrilhas();
+    const { startModule, markCompleted, giveUp } = useProgresso();
 
     useEffect(() => {
         const fetchTrilhas = async () => {
-            try {
-                const response = await fetch('http://localhost:3001/trilhas');
-                const trilhasAPI: TrilhaAPI[] = await response.json();
+            const trilhasAPI = await getTrilhas();
 
-                const trilhas: Trilha[] = trilhasAPI.map(trilhaAPI => ({
+            if (trilhasAPI) {
+                const trilhas: Trilha[] = trilhasAPI.map((trilhaAPI: any) => ({
                     id: trilhaAPI.id,
                     titulo: trilhaAPI.nome,
                     descricao: trilhaAPI.descricao,
-                    duracao: getDuracaoForTrilha(trilhaAPI.etapas),
-                    nivel: getNivelForTrilha(trilhaAPI.id),
-                    modulos: trilhaAPI.etapas.map((etapa: { titulo: string }) => etapa.titulo),
-                    icone: getIconForTrilha(trilhaAPI.id)
+                    duracao: getDuracaoForTrilha(trilhaAPI.modulos),
+                    nivel: trilhaAPI.nivel,
+                    modulos: trilhaAPI.modulos,
+                    icone: trilhaAPI.icone
                 }));
 
                 setTrilhasDisponiveis(trilhas);
-            } catch {
-                setError('Erro ao carregar trilhas. Verifique se o JSON-server está rodando.');
-            } finally {
-                setIsLoading(false);
             }
         };
 
         fetchTrilhas();
-    }, []);
+    }, [getTrilhas]);
 
     const handleStartModule = async (index: number) => {
         setStartedModules(prev => new Set(prev).add(index));
-        try {
-            // Add to progresso API
-            await fetch('http://localhost:3001/progresso', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    idUser: "1",
-                    status: "em andamento",
-                    idModulo: (index + 1).toString()
-                }),
+        const result = await startModule(1, (index + 1));
+
+        if (!result) {
+            console.error('Erro ao salvar progresso');
+            // Reverter o estado em caso de erro
+            setStartedModules(prev => {
+                const newSet = new Set(prev);
+                newSet.delete(index);
+                return newSet;
             });
-        } catch (error) {
-            console.error('Erro ao salvar progresso:', error);
         }
     };
 
@@ -111,25 +66,10 @@ export default function TrilhasProntas() {
     };
 
     const handleMarkCompleted = async (index: number) => {
-        // Mark as completed - update progresso status
-        try {
-            // First, find the progresso entry for this module
-            const progressoResponse = await fetch(`http://localhost:3001/progresso?idUser=1&idModulo=${(index + 1).toString()}`);
-            const progressoData = await progressoResponse.json();
-            if (progressoData.length > 0) {
-                const progressoId = progressoData[0].id;
-                await fetch(`http://localhost:3001/progresso/${progressoId}`, {
-                    method: 'PATCH',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        status: "concluido"
-                    }),
-                });
-            }
-        } catch (error) {
-            console.error('Erro ao salvar conclusão:', error);
+        const result = await markCompleted(1, (index + 1));
+
+        if (!result) {
+            console.error('Erro ao salvar conclusão');
         }
     };
 
@@ -139,18 +79,11 @@ export default function TrilhasProntas() {
             newSet.delete(index);
             return newSet;
         });
-        try {
-            // Delete from progresso API
-            const progressoResponse = await fetch(`http://localhost:3001/progresso?idUser=1&idModulo=${(index + 1).toString()}`);
-            const progressoData = await progressoResponse.json();
-            if (progressoData.length > 0) {
-                const progressoId = progressoData[0].id;
-                await fetch(`http://localhost:3001/progresso/${progressoId}`, {
-                    method: 'DELETE',
-                });
-            }
-        } catch (error) {
-            console.error('Erro ao salvar desistência:', error);
+
+        const result = await giveUp(1, (index + 1));
+
+        if (!result) {
+            console.error('Erro ao salvar desistência');
         }
     };
 
@@ -170,18 +103,18 @@ export default function TrilhasProntas() {
             <section className="section-padding">
                 <div className="max-container">
 
-                    <button onClick={() => navigate('/perfil')} className="mb-4 text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                    <button onClick={() => navigate('/perfil')} className="mb-4 text-blue-600 hover:text-blue-800 font-medium flex items-center cursor-pointer">
                         ← Perfil
                     </button>
 
                     {!selectedTrilha ? (
                         <>
-                            {error && (
+                            {errorTrilhas && (
                                 <div className="text-red-600 text-center bg-red-50 p-4 rounded mb-6">
-                                    {error}
+                                    {errorTrilhas}
                                 </div>
                             )}
-                            {isLoading ? (
+                            {loadingTrilhas ? (
                                 <div className="text-center py-12">
                                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
                                     <p className="text-gray-600">Carregando trilhas...</p>
@@ -189,28 +122,24 @@ export default function TrilhasProntas() {
                             ) : (
                                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                                     {trilhasDisponiveis.map((trilha) => (
-                                <div
-                                    key={trilha.id}
-                                    className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer group"
-                                    onClick={() => setSelectedTrilha(trilha)}
-                                >
-                                    <div className="text-center mb-4">
-                                        <div className="text-4xl mb-2">{trilha.icone}</div>
-                                        <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
-                                            {trilha.titulo}
-                                        </h3>
-                                    </div>
-                                    <p className="text-gray-600 text-sm mb-4">{trilha.descricao}</p>
-                                    <div className="flex justify-between text-sm text-gray-500 mb-4">
-                                        <span>📅 {trilha.duracao}</span>
-                                        <span>🎯 {trilha.nivel}</span>
-                                    </div>
-                                    <div className="text-center">
-                                        <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">
-                                            {trilha.modulos.length} módulos
-                                        </span>
-                                    </div>
-                                </div>
+                                        <div key={trilha.id} className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer group" onClick={() => setSelectedTrilha(trilha)}>
+                                            <div className="text-center mb-4">
+                                                <div className="text-4xl mb-2">{trilha.icone}</div>
+                                                <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                                                    {trilha.titulo}
+                                                </h3>
+                                            </div>
+                                            <p className="text-gray-600 text-sm mb-4">{trilha.descricao}</p>
+                                            <div className="flex justify-between text-sm text-gray-500 mb-4">
+                                                <span>📅 {trilha.duracao}</span>
+                                                <span>🎯 {trilha.nivel}</span>
+                                            </div>
+                                            <div className="text-center">
+                                                <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">
+                                                    {trilha.modulos.length} módulos
+                                                </span>
+                                            </div>
+                                        </div>
                                     ))}
                                 </div>
                             )}
@@ -218,10 +147,7 @@ export default function TrilhasProntas() {
                     ) : (
                         <div className="bg-white rounded-lg shadow-lg p-4 md:p-8">
                             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
-                                <button
-                                    onClick={() => setSelectedTrilha(null)}
-                                    className="text-blue-600 hover:text-blue-800 font-medium flex items-center"
-                                >
+                                <button onClick={() => setSelectedTrilha(null)} className="text-blue-600 hover:text-blue-800 font-medium flex items-center">
                                     ← Voltar às Trilhas
                                 </button>
                                 <div className="text-left sm:text-right">
@@ -258,8 +184,6 @@ export default function TrilhasProntas() {
                                     ))}
                                 </div>
                             </div>
-
-
                         </div>
                     )}
                 </div>
