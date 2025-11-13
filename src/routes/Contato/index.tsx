@@ -19,7 +19,6 @@ export default function Contato() {
         console.log('Form submitted:', formData);
         // Reset form
         setFormData({ nome: '', email: '', assunto: '', mensagem: '' });
-        alert('Mensagem enviada com sucesso!');
     };
 
     return (

@@ -1,4 +1,4 @@
-import type { TrilhaPersonalizada } from '../../types/trilha';
+import type { TrilhaPersonalizada } from '../../types/trilhaPersonalizada';
 
 interface TrilhaPersonalizadaModalProps {
     trilha: TrilhaPersonalizada | null;
@@ -30,23 +30,14 @@ export default function TrilhaPersonalizadaModal({ trilha, isOpen, onClose }: Tr
                             </h3>
                             <div className="space-y-2 sm:space-y-3">
                                 <div className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-0">
-                                    <span className="text-gray-600 text-sm sm:text-base">Experiência:</span>
-                                    <span className="font-medium text-gray-900 text-sm sm:text-base">{trilha.experiencia}</span>
+                                    <span className="text-gray-600 text-sm sm:text-base">Dificuldade:</span>
+                                    <span className="font-medium text-gray-900 text-sm sm:text-base">{trilha.dificuldade}</span>
                                 </div>
                                 <div className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-0">
                                     <span className="text-gray-600 text-sm sm:text-base">Disponibilidade:</span>
                                     <span className="font-medium text-gray-900 text-sm sm:text-base">{trilha.disponibilidade} horas/semana</span>
                                 </div>
-                                <div className="pt-2 border-t border-gray-200">
-                                    <span className="text-gray-600 block mb-2 text-sm sm:text-base">Preferências de Aprendizado:</span>
-                                    <div className="flex flex-wrap gap-1 sm:gap-2">
-                                        {trilha.preferenciasAprendizado.map((preferencia, index) => (
-                                            <span key={index} className="bg-blue-100 text-blue-800 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
-                                                {preferencia}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                         <div className="bg-linear-to-br from-purple-50 to-blue-50 rounded-xl p-4 sm:p-6">
@@ -59,33 +50,36 @@ export default function TrilhaPersonalizadaModal({ trilha, isOpen, onClose }: Tr
                     </div>
 
                     <div>
-                        <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6 flex items-center">
-                            <span className="w-2 sm:w-3 h-2 sm:h-3 bg-green-600 rounded-full mr-2 sm:mr-3"></span> Módulos da Trilha ({trilha.modulos.length})
-                        </h3>
-                        <div className="space-y-4 sm:space-y-6">
-                            {trilha.modulos.map((modulo, index) => (
-                                <div key={modulo.id} className="bg-white border border-gray-200 rounded-xl p-4 sm:p-6 shadow-sm hover:shadow-md transition-shadow">
-                                    <div className="flex items-start justify-between mb-3 sm:mb-4">
-                                        <div className="flex items-center flex-1 min-w-0">
-                                            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-xs sm:text-sm font-bold mr-3 sm:mr-4 shrink-0">
-                                                {index + 1}
+                        {trilha.modulos.length > 0 ? (
+                            <>
+                                <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6 flex items-center">
+                                    <span className="w-2 sm:w-3 h-2 sm:h-3 bg-green-600 rounded-full mr-2 sm:mr-3"></span> Módulos da Trilha ({trilha.modulos.length})
+                                </h3>
+                                <div className="space-y-4 sm:space-y-6">
+                                    {trilha.modulos.map((modulo, index) => (
+                                        <div key={modulo.id} className="bg-white border border-gray-200 rounded-xl p-4 sm:p-6 shadow-sm hover:shadow-md transition-shadow">
+                                            <div className="flex items-start justify-between mb-3 sm:mb-4">
+                                                <div className="flex items-center flex-1 min-w-0">
+                                                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-xs sm:text-sm font-bold mr-3 sm:mr-4 shrink-0">{index + 1}</div>
+                                                    <div className="flex-1 min-w-0">
+                                                        <h4 className="text-lg sm:text-xl font-semibold text-gray-900 wrap-break-word">{modulo.titulo}</h4>
+                                                        <span className="text-xs sm:text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full mt-1 inline-block">{modulo.duracao}</span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="flex-1 min-w-0">
-                                                <h4 className="text-lg sm:text-xl font-semibold text-gray-900 wrap-break-word">{modulo.titulo}</h4>
-                                                <span className="text-xs sm:text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full mt-1 inline-block">{modulo.duracao}
-                                                </span>
-                                            </div>
+                                            <p className="text-gray-600 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">{modulo.descricao}</p>
                                         </div>
-                                    </div>
-                                    <p className="text-gray-600 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">{modulo.descricao}</p>
-                                    {modulo.videoUrl && (
-                                        <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
-                                            <iframe src={modulo.videoUrl} title={modulo.titulo} className="w-full h-full" allowFullScreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" />
-                                        </div>
-                                    )}
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
+                            </>
+                        ) : (
+                            <div className="bg-red-50 border border-red-200 rounded-xl p-4 sm:p-6">
+                                <h3 className="text-lg sm:text-xl font-semibold text-red-900 mb-3 sm:mb-4 flex items-center">
+                                    <span className="w-2 sm:w-3 h-2 sm:h-3 bg-red-600 rounded-full mr-2 sm:mr-3"></span> Erro na Geração da Trilha
+                                </h3>
+                                <p className="text-red-700 leading-relaxed text-sm sm:text-base">A IA não conseguiu gerar os módulos desta trilha. Isso pode indicar um problema temporário com o serviço de IA ou uma configuração inadequada do prompt.</p>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

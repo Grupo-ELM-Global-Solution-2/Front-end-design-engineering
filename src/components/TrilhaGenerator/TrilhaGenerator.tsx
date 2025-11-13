@@ -11,7 +11,7 @@ export default function TrilhaGenerator({ onTrilhaGerada, onCancel }: TrilhaGene
     const { gerarTrilhaPersonalizada, loading } = useTrilhaPersonalizada();
     const [formData, setFormData] = useState({
         objetivo: '',
-        experiencia: '',
+        dificuldade: '',
         tempoDisponivel: '',
         preferencias: [] as string[]
     });
@@ -21,36 +21,17 @@ export default function TrilhaGenerator({ onTrilhaGerada, onCancel }: TrilhaGene
         setFormData({ ...formData, [name]: value });
     };
 
-    const handlePreferenceToggle = (preference: string) => {
-        setFormData(prev => ({
-            ...prev,
-            preferencias: prev.preferencias.includes(preference)
-                ? prev.preferencias.filter(p => p !== preference)
-                : [...prev.preferencias, preference]
-        }));
-    };
 
     const gerarTrilha = async () => {
         try {
             const savedTrilha = await gerarTrilhaPersonalizada(formData);
             if (savedTrilha) {
-                // Get the steps from the saved trilha
-                const { getTrilhaSteps } = await import('../../data/trilhaSteps');
-                const steps = getTrilhaSteps(formData.objetivo);
-                onTrilhaGerada(steps);
+                console.log('Trilha gerada pela IA:', savedTrilha);
+                // Retorna os módulos da trilha gerada pela IA
+                onTrilhaGerada(savedTrilha.modulos);
             }
         } catch (err) {
             console.error('Erro ao gerar trilha:', err);
-            // Fallback to simulated generation
-            let trilha: string[] = [];
-            if (formData.objetivo === 'frontend') {
-                trilha = ['HTML5 e CSS3', 'JavaScript', 'React.js', 'TypeScript'];
-            } else if (formData.objetivo === 'backend') {
-                trilha = ['Python', 'Django', 'PostgreSQL', 'APIs'];
-            } else {
-                trilha = ['Lógica', 'Estruturas de Dados', 'Algoritmos', 'Projetos'];
-            }
-            onTrilhaGerada(trilha.map(title => ({ title } as TrilhaStep)));
         }
     };
 
@@ -72,10 +53,10 @@ export default function TrilhaGenerator({ onTrilhaGerada, onCancel }: TrilhaGene
                 </div>
 
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Nível de Experiência</label>
-                    <select name="experiencia" value={formData.experiencia} onChange={handleChange} className="form-input">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Dificuldade</label>
+                    <select name="dificuldade" value={formData.dificuldade} onChange={handleChange} className="form-input">
                         <option value="">Selecione</option>
-                        <option value="iniciante">Iniciante</option>
+                        <option value="iniciante">Básico</option>
                         <option value="intermediario">Intermediário</option>
                         <option value="avancado">Avançado</option>
                     </select>
@@ -92,27 +73,8 @@ export default function TrilhaGenerator({ onTrilhaGerada, onCancel }: TrilhaGene
                     </select>
                 </div>
 
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-4">Preferências de Aprendizado</label>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                        {['Vídeos', 'Artigos', 'Projetos Práticos', 'Cursos Online', 'Livros', 'Mentoria'].map(pref => (
-                            <button
-                                key={pref}
-                                onClick={() => handlePreferenceToggle(pref)}
-                                className={`p-3 border rounded-lg text-sm font-medium transition-all duration-200 ${
-                                    formData.preferencias.includes(pref)
-                                        ? 'bg-blue-100 border-blue-500 text-blue-700'
-                                        : 'bg-gray-50 border-gray-300 hover:bg-gray-100'
-                                }`}
-                            >
-                                {pref}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
                 <div className="flex space-x-4">
-                    <button onClick={gerarTrilha} disabled={loading || !formData.objetivo || !formData.experiencia || !formData.tempoDisponivel} className="btn-primary flex-1 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <button onClick={gerarTrilha} disabled={loading || !formData.objetivo || !formData.dificuldade || !formData.tempoDisponivel} className="btn-primary flex-1 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
                         {loading ? (
                             <div className="flex items-center justify-center space-x-2">
                                 <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
@@ -122,7 +84,7 @@ export default function TrilhaGenerator({ onTrilhaGerada, onCancel }: TrilhaGene
                             'Gerar Trilha Personalizada'
                         )}
                     </button>
-                    <button onClick={onCancel} className="btn-secondary flex-1">Cancelar</button>
+                    <button onClick={onCancel} className="btn-secondary flex-1 cursor-pointer">Cancelar</button>
                 </div>
             </div>
         </div>

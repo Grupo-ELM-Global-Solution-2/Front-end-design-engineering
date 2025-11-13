@@ -23,10 +23,10 @@ export default function Perfil() {
                 const user = await getUser(userId);
                 if (user) {
                     setUserInfo({
-                        nome: user.nome || '',
-                        email: user.email || '',
-                        telefone: user.telefone || '',
-                        biografia: user.biografia || ''
+                        nome: user.nome,
+                        email: user.email,
+                        telefone: user.telefone ,
+                        biografia: user.biografia
                     });
                 }
             }
@@ -54,7 +54,6 @@ export default function Perfil() {
 
         if (updatedUser) {
             setIsEditing(false);
-            alert('Informações salvas com sucesso!');
         }
     };
 
@@ -63,15 +62,15 @@ export default function Perfil() {
         // Recarrega os dados originais do usuário em caso de cancelamento
         const userId = localStorage.getItem('userId');
         if (userId) {
-             const user = await getUser(userId);
-             if (user) {
+            const user = await getUser(userId);
+            if (user) {
                 setUserInfo({
                     nome: user.nome || '',
                     email: user.email || '',
                     telefone: user.telefone || '',
                     biografia: user.biografia || ''
                 });
-             }
+            }
         }
     };
 
@@ -95,17 +94,11 @@ export default function Perfil() {
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 gap-4">
                             <h2 className="text-xl md:text-2xl font-bold text-gray-900">Informações Pessoais</h2>
                             {!isEditing ? (
-                                <button onClick={() => setIsEditing(true)} className="btn-primary w-full sm:w-auto">
-                                    Editar Perfil
-                                </button>
+                                <button onClick={() => setIsEditing(true)} className="btn-primary w-full sm:w-auto cursor-pointer">Editar Perfil</button>
                             ) : (
                                 <div className="flex flex-col sm:flex-row gap-2 sm:space-x-2 w-full sm:w-auto">
-                                    <button onClick={handleSave} className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex-1 sm:flex-none">
-                                        Salvar
-                                    </button>
-                                    <button onClick={handleCancel} className="btn-secondary flex-1 sm:flex-none">
-                                        Cancelar
-                                    </button>
+                                    <button onClick={handleSave} className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex-1 sm:flex-none cursor-pointer">Salvar</button>
+                                    <button onClick={handleCancel} className="btn-secondary flex-1 sm:flex-none cursor-pointer">Cancelar</button>
                                 </div>
                             )}
                         </div>

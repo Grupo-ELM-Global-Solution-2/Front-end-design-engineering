@@ -4,7 +4,7 @@ import { useTrilhaPersonalizada } from '../../hooks/useApiTrilhaPersonalizada';
 import TrilhaGenerator from '../../components/TrilhaGenerator/TrilhaGenerator';
 import TrilhaPersonalizadaCard from '../../components/TrilhaPersonalizadaCard/TrilhaPersonalizadaCard';
 import TrilhaPersonalizadaModal from '../../components/TrilhaPersonalizadaModal/TrilhaPersonalizadaModal';
-import type { TrilhaPersonalizada } from '../../types/trilha';
+import type { TrilhaPersonalizada } from '../../types/trilhaPersonalizada';
 
 export default function TrilhaPersonalizada() {
     const navigate = useNavigate();
@@ -67,9 +67,7 @@ export default function TrilhaPersonalizada() {
 
             <section className="section-padding">
                 <div className="max-container">
-                    <button onClick={() => navigate('/perfil')} className="mb-4 text-blue-600 hover:text-blue-800 font-medium flex items-center">
-                        ← Perfil
-                    </button>
+                    <button onClick={() => navigate('/perfil')} className="mb-4 text-blue-600 hover:text-blue-800 font-medium flex items-center cursor-pointer">← Perfil</button>
 
                     {showGenerator ? (
                         <TrilhaGenerator onTrilhaGerada={handleTrilhaGerada} onCancel={() => setShowGenerator(false)} />
@@ -77,7 +75,7 @@ export default function TrilhaPersonalizada() {
                         <div className="space-y-6">
                             <div className="flex justify-between items-center">
                                 <h2 className="text-2xl font-bold text-gray-900">Suas Trilhas Personalizadas</h2>
-                                <button onClick={handleAddTrilha} disabled={trilhas.length >= 3} className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed">Adicionar Nova Trilha
+                                <button onClick={handleAddTrilha} disabled={trilhas.length >= 3} className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">Adicionar Nova Trilha
                                 </button>
                             </div>
 
@@ -96,9 +94,7 @@ export default function TrilhaPersonalizada() {
                             ) : (
                                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                                     {trilhas.map((trilha) => (
-                                        <TrilhaPersonalizadaCard
-                                            key={trilha.id}
-                                            trilha={trilha}
+                                        <TrilhaPersonalizadaCard key={trilha.id} trilha={trilha}
                                             onVerTrilha={(trilha) => {
                                                 setSelectedTrilha(trilha);
                                                 setShowModal(true);

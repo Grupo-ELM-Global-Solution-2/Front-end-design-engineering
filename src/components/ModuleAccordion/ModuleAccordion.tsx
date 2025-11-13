@@ -4,20 +4,22 @@ import type { Modulo } from '../../types/trilha';
 interface ModuleAccordionProps {
     index: number;
     modulo: Modulo;
-    started: boolean;
+    status: 'nao-iniciado' | 'em-andamento' | 'concluido';
     onStart: (index: number) => void;
     onVisualize: (index: number) => void;
     onMarkCompleted: (index: number) => void;
+    onUnmarkCompleted: (index: number) => void;
     onGiveUp: (index: number) => void;
 }
 
 export default function ModuleAccordion({
     index,
     modulo,
-    started,
+    status,
     onStart,
     onVisualize,
     onMarkCompleted,
+    onUnmarkCompleted,
     onGiveUp
 }: ModuleAccordionProps) {
     const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +30,7 @@ export default function ModuleAccordion({
 
     return (
         <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden">
-            <button onClick={toggleOpen} className="w-full text-left p-4 md:p-8 focus:outline-none focus:ring-2 focus:ring-indigo-500 hover:bg-gray-50 transition-colors duration-200">
+            <div onClick={toggleOpen} className="w-full text-left p-4 md:p-8 cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 hover:bg-gray-50 transition-colors duration-200">
                 <div className="flex justify-between items-center">
                     <div className="flex items-center space-x-4">
                         <div className="w-6 h-6 shrink-0 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
@@ -46,31 +48,25 @@ export default function ModuleAccordion({
                     </div>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-2 sm:space-x-2 w-full sm:w-auto mt-4">
-                    {started ? (
+                    {status === 'concluido' ? (
+                        <button onClick={(e) => { e.stopPropagation(); onUnmarkCompleted(index); }} className="bg-green-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-700 transition-colors flex-1 sm:flex-none cursor-pointer">Concluído ✓</button>
+                    ) : status === 'em-andamento' ? (
                         <>
-                            <button onClick={(e) => { e.stopPropagation(); onMarkCompleted(index); }} className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition-colors flex-1 sm:flex-none">
-                                Marcar como concluído
-                            </button>
-                            <button onClick={(e) => { e.stopPropagation(); onGiveUp(index); }} className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-700 transition-colors flex-1 sm:flex-none">
-                                Desistir
-                            </button>
+                            <button onClick={(e) => { e.stopPropagation(); onMarkCompleted(index); }} className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition-colors flex-1 sm:flex-none cursor-pointer">Marcar como concluído</button>
+                            <button onClick={(e) => { e.stopPropagation(); onGiveUp(index); }} className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-700 transition-colors flex-1 sm:flex-none cursor-pointer">Desistir</button>
                         </>
                     ) : (
                         <>
-                            <button onClick={(e) => { e.stopPropagation(); onStart(index); setIsOpen(true); }} className="bg-green-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-700 transition-colors flex-1 sm:flex-none">
-                                Começar
-                            </button>
-                            <button onClick={(e) => { e.stopPropagation(); onVisualize(index); setIsOpen(true); }} className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm hover:bg-gray-400 transition-colors flex-1 sm:flex-none">
-                                Visualizar
-                            </button>
+                            <button onClick={(e) => { e.stopPropagation(); onStart(index); setIsOpen(true); }} className="bg-green-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-700 transition-colors flex-1 sm:flex-none cursor-pointer">Começar</button>
+                            <button onClick={(e) => { e.stopPropagation(); onVisualize(index); setIsOpen(true); }} className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm hover:bg-gray-400 transition-colors flex-1 sm:flex-none cursor-pointer">Visualizar</button>
                         </>
                     )}
                 </div>
-            </button>
+            </div>
             {isOpen && (
                 <div className="px-4 md:px-8 pb-8 border-t border-gray-100">
                     <p className="text-gray-600 leading-relaxed text-base md:text-lg pt-4">{modulo.descricao}</p>
-                        <iframe width="100%" height="315" src={modulo.videoUrl} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="w-full" />
+                    <iframe width="100%" height="415" src={modulo.videoUrl} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="w-full" />
                 </div>
             )}
         </div>

@@ -1,3 +1,4 @@
+// Módulo de uma trilha pronta (do db.json)
 export interface Modulo {
     id: number;
     titulo: string;
@@ -6,32 +7,12 @@ export interface Modulo {
     videoUrl: string;
 }
 
-export interface TrilhaAPI {
-    id: number;
+// Trilha Pronta (do db.json)
+export interface TrilhaPronta {
+    id: string;
     nome: string;
     descricao: string;
     icone: string;
-    nivel: string;
+    dificuldade: string;
     modulos: Modulo[];
-}
-
-export interface TrilhaPersonalizada {
-    id?: number;
-    idUser?: number;
-    interesse: string;
-    experiencia: string;
-    disponibilidade: string;
-    preferenciasAprendizado: string[];
-    respostaIA?: string;
-    modulos: Modulo[];
-}
-
-export interface Trilha {
-    id: number;
-    titulo: string;
-    descricao: string;
-    duracao: string;
-    nivel: string;
-    modulos: Modulo[];
-    icone: string;
 }

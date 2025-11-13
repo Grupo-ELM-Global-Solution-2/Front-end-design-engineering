@@ -1,13 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { sugestoes, tipos, niveis, filtrarSugestoes, getTipoIcon, getTipoLabel } from '../../data/sugestoes';
+import { useSugestoes } from '../../hooks/useApiSugestoes';
+import type { Sugestao } from '../../types/sugestao';
+import { tipos, dificuldades, filtrarSugestoes, getTipoIcon, getTipoLabel } from '../../types/sugestao';
 
 export default function Sugestoes() {
     const navigate = useNavigate();
+    const { getSugestoes } = useSugestoes();
     const [filtroTipo, setFiltroTipo] = useState<string>('todos');
-    const [filtroNivel, setFiltroNivel] = useState<string>('todos');
+    const [filtroDificuldade, setFiltroDificuldade] = useState<string>('todos');
+    const [sugestoes, setSugestoes] = useState<Sugestao[]>([]);
 
-    const sugestoesFiltradas = filtrarSugestoes(sugestoes, filtroTipo, filtroNivel);
+    useEffect(() => {
+        const loadSugestoes = async () => {
+            const data = await getSugestoes() as Sugestao[];
+            if (data) {
+                setSugestoes(data);
+            }
+        };
+        loadSugestoes();
+    }, [getSugestoes]);
+
+    const sugestoesFiltradas = filtrarSugestoes(sugestoes, filtroTipo, filtroDificuldade);
 
     return (
         <main className="main-bg min-h-screen">
@@ -20,7 +34,7 @@ export default function Sugestoes() {
 
             <section className="section-padding">
                 <div className="max-container">
-                    <button onClick={() => navigate('/perfil')} className="mb-4 text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                    <button onClick={() => navigate('/perfil')} className="mb-4 text-blue-600 hover:text-blue-800 font-medium flex items-center cursor-pointer">
                         ← Perfil
                     </button>
                     {/* Filtros */}
@@ -37,8 +51,8 @@ export default function Sugestoes() {
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">Nível de Dificuldade</label>
-                                <select value={filtroNivel} onChange={(e) => setFiltroNivel(e.target.value)} className="form-input">
-                                    {niveis.map(nivel => (
+                                <select value={filtroDificuldade} onChange={(e) => setFiltroDificuldade(e.target.value)} className="form-input">
+                                    {dificuldades.map(nivel => (
                                         <option key={nivel.value} value={nivel.value}>{nivel.label}</option>
                                     ))}
                                 </select>
@@ -54,11 +68,11 @@ export default function Sugestoes() {
                                     <div className="flex items-center justify-between mb-4">
                                         <div className="text-3xl">{sugestao.thumbnail}</div>
                                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                            sugestao.nivel === 'Iniciante' ? 'bg-green-100 text-green-800' :
-                                            sugestao.nivel === 'Intermediário' ? 'bg-yellow-100 text-yellow-800' :
+                                            sugestao.dificuldade === 'Iniciante' ? 'bg-green-100 text-green-800' :
+                                            sugestao.dificuldade === 'Intermediário' ? 'bg-yellow-100 text-yellow-800' :
                                             'bg-red-100 text-red-800'
                                         }`}>
-                                            {sugestao.nivel}
+                                            {sugestao.dificuldade}
                                         </span>
                                     </div>
 

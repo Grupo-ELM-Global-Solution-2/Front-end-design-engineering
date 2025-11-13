@@ -1,50 +1,73 @@
 @import "tailwindcss";
 
-/* Custom styles */
-.max-container {
-    @apply max-w-[1200px] mx-auto px-4;
-}
+@layer components {
+    .max-container {
+        @apply max-w-[1200px] mx-auto px-4;
+    }
 
-.main-bg {
-    @apply bg-linear-to-br from-indigo-50 via-white to-purple-50 text-gray-900 min-h-screen;
-}
+    .footer-column {
+        @apply flex flex-col items-center md:items-start md:justify-center;
+    }
 
-.hero-section {
-    @apply bg-linear-to-r from-indigo-600 to-purple-600 text-white py-20 px-6 text-center;
-}
+    .footer-column h3,
+    .footer-column h4 {
+        @apply text-white mb-1.5 text-[1em] text-lg font-bold;
+    }
 
-.section-padding {
-    @apply py-20 px-6;
-}
+    .footer-column p,
+    .footer-column ul li a {
+        @apply text-[#c0c0c0] text-[0.9em] mb-[6px] md:text-[17px];
+    }
 
-.section-padding-bg {
-    @apply py-20 px-6;
-}
+    .footer-column ul li a:hover {
+        @apply text-white underline;
+    }
 
-.section-title {
-    @apply text-3xl md:text-4xl font-bold text-center text-gray-900 mb-6;
-}
+    .social-icons {
+        @apply flex m-3 justify-center gap-3;
+    }
 
-.section-subtitle {
-    @apply text-center text-lg text-gray-600 mb-12 max-w-3xl mx-auto;
-}
+    .main-bg {
+        @apply bg-linear-to-br from-indigo-50 via-white to-purple-50 text-gray-900 min-h-screen;
+    }
 
-.form-input {
-    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
-}
+    .hero-section {
+        @apply bg-linear-to-r from-indigo-600 to-purple-600 text-white py-20 px-6 text-center;
+    }
 
-.card-white {
-    @apply bg-white rounded-lg shadow-lg p-8;
-}
+    .section-padding {
+        @apply py-20 px-6;
+    }
 
-.text-center-mb8 {
-    @apply text-center mb-8;
-}
+    .section-padding-bg {
+        @apply py-20 px-6;
+    }
 
-.btn-primary {
-    @apply bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors;
-}
+    .section-title {
+        @apply text-3xl md:text-4xl font-bold text-center text-gray-900 mb-6;
+    }
 
-.btn-secondary {
-    @apply bg-gray-300 text-gray-700 py-3 px-6 rounded-lg font-semibold hover:bg-gray-400 transition-colors;
+    .section-subtitle {
+        @apply text-center text-lg text-gray-600 mb-12 max-w-3xl mx-auto;
+    }
+
+    .form-input {
+        @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+    }
+
+    .card-white {
+        @apply bg-white rounded-lg shadow-lg p-8;
+    }
+
+    .text-center-mb8 {
+        @apply text-center mb-8;
+    }
+
+    .btn-primary {
+        @apply bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors;
+    }
+
+    .btn-secondary {
+        @apply bg-gray-300 text-gray-700 py-3 px-6 rounded-lg font-semibold hover:bg-gray-400 transition-colors;
+    }
 }

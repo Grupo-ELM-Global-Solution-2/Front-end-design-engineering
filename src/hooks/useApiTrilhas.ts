@@ -1,31 +1,24 @@
 import { useCallback } from 'react';
 import { useApiBase } from './useApiBase';
-import type { TrilhaPersonalizada } from '../types/trilha';
 
-// Hook específico para trilhas
+// Hook específico para trilhas prontas
 export function useTrilhas() {
     const { loading, error, fetchApi } = useApiBase();
 
+    // Busca todas as TRILHAS PRONTAS
     const getTrilhas = useCallback(async () => {
         return await fetchApi('/trilhas');
     }, [fetchApi]);
 
+    // Busca uma TRILHA PRONTA específica
     const getTrilhaById = useCallback(async (trilhaId: string) => {
         return await fetchApi(`/trilhas/${trilhaId}`);
-    }, [fetchApi]);
-
-    const saveTrilhaPersonalizada = useCallback(async (trilhaPersonalizada: TrilhaPersonalizada) => {
-        return await fetchApi('/trilhasPersonalizadas', {
-            method: 'POST',
-            body: JSON.stringify(trilhaPersonalizada)
-        });
     }, [fetchApi]);
 
     return {
         loading,
         error,
         getTrilhas,
-        getTrilhaById,
-        saveTrilhaPersonalizada,
+        getTrilhaById
     };
 }

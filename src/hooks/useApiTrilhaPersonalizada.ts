@@ -1,6 +1,16 @@
 import { useCallback } from 'react';
 import { useApiBase } from './useApiBase';
-import { sugestoes, type Sugestao } from '../data/sugestoes';
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import type { TrilhaPersonalizada } from '../types/trilhaPersonalizada';
+import { getTrilhaSteps } from '../data/trilhaSteps';
+
+// Inicializa a IA
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+if (!apiKey) {
+    throw new Error("VITE_GEMINI_API_KEY não encontrada no .env.local. Por favor, adicione sua chave lá.");
+}
+const genAI = new GoogleGenerativeAI(apiKey);
+const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-lite" });
 
 // Hook específico para trilhas personalizadas
 export function useTrilhaPersonalizada() {
@@ -8,117 +18,98 @@ export function useTrilhaPersonalizada() {
 
     const gerarTrilhaPersonalizada = useCallback(async (formData: {
         objetivo: string;
-        experiencia: string;
+        dificuldade: string;
         tempoDisponivel: string;
         preferencias: string[];
     }) => {
-        // Filter suggestions based on user preferences
-        let filteredSugestoes = sugestoes;
+        try {
+            // Busca dados das trilhas existentes para contextualizar
+            const trilhaBase = getTrilhaSteps(formData.objetivo);
 
-        // Filter by experience level
-        if (formData.experiencia === 'iniciante') {
-            filteredSugestoes = filteredSugestoes.filter(s => s.nivel === 'Iniciante');
-        } else if (formData.experiencia === 'intermediario') {
-            filteredSugestoes = filteredSugestoes.filter(s => s.nivel === 'Intermediário');
-        } else if (formData.experiencia === 'avancado') {
-            filteredSugestoes = filteredSugestoes.filter(s => s.nivel === 'Avançado');
-        }
+            // Engenharia de Prompt
+            const prompt = `
+                Você é um mentor de carreira sênior especializado em desenvolvimento de software.
+                O usuário quer aprender ${formData.objetivo} e tem dificuldade ${formData.dificuldade}.
+                Tem ${formData.tempoDisponivel} horas disponíveis por semana.
 
-        // Filter by preferences (learning types)
-        if (formData.preferencias.length > 0) {
-            const preferenceMap: { [key: string]: string } = {
-                'Vídeos': 'video',
-                'Artigos': 'artigo',
-                'Cursos Online': 'curso',
-                'Projetos Práticos': 'projeto'
+                BASEADO NAS TRILHAS EXISTENTES DO SISTEMA:
+                ${trilhaBase.map(step => `- ${step.titulo}: ${step.descricao} (${step.duracao})`).join('\n')}
+
+                Sua tarefa é criar uma trilha de aprendizado personalizada baseada nas trilhas existentes, mas adaptada ao perfil do usuário.
+
+                Responda APENAS com um JSON válido contendo exatamente estas 2 chaves:
+
+                1. "respostaIA": Uma string com uma mensagem motivacional e personalizada explicando por que esta trilha é perfeita para o perfil do usuário, mencionando elementos das trilhas existentes.
+
+                2. "modulos": Um array de 3-5 objetos selecionados/adaptados das trilhas existentes, cada um com:
+                   - "titulo": string (nome do módulo baseado nas trilhas existentes)
+                   - "descricao": string (breve descrição explicativa do que será aprendido neste módulo)
+                   - "duracao": string (duração realista baseada no tempo disponível)
+
+                IMPORTANTE:
+                - Selecione módulos das trilhas existentes (${trilhaBase.map(s => s.titulo).join(', ')})
+                - Adapte as durações ao tempo disponível (${formData.tempoDisponivel})
+                - Considere a dificuldade do usuário (${formData.dificuldade})
+                - Mantenha as durações realistas e sequenciais
+                - NÃO inclua links externos, vídeos ou referências web
+                - Foque apenas em explicações textuais simples
+            `;
+
+            // Chama a API da IA
+            const result = await model.generateContent(prompt);
+            const response = await result.response;
+            const textResponse = response.text();
+
+            // Limpa e parseia o JSON
+            const jsonString = textResponse.replace(/^```json\s*/, '').replace(/```$/, '').trim();
+            const aiData = JSON.parse(jsonString);
+
+            // Valida a resposta da IA
+            if (!aiData.respostaIA || !Array.isArray(aiData.modulos)) {
+                throw new Error('Resposta da IA inválida - estrutura incorreta');
+            }
+
+            // Adiciona IDs aos módulos
+            const modulosComId = aiData.modulos.map((modulo: { titulo: string; descricao: string; duracao: string }, index: number) => ({
+                id: index + 1,
+                titulo: modulo.titulo,
+                descricao: modulo.descricao,
+                duracao: modulo.duracao
+            }));
+
+            // Prepara dados para salvar
+            const assessmentData: Omit<TrilhaPersonalizada, 'id'> = {
+                interesse: formData.objetivo,
+                dificuldade: formData.dificuldade,
+                disponibilidade: formData.tempoDisponivel,
+                respostaIA: aiData.respostaIA,
+                modulos: modulosComId
             };
 
-            const tiposPreferidos = formData.preferencias
-                .map(pref => preferenceMap[pref])
-                .filter(Boolean);
+            // Salva no JSON-server
+            const savedAssessment = await fetchApi('/trilhasPersonalizadas', {
+                method: 'POST',
+                body: JSON.stringify(assessmentData)
+            });
 
-            if (tiposPreferidos.length > 0) {
-                filteredSugestoes = filteredSugestoes.filter(s => tiposPreferidos.includes(s.tipo));
-            }
+            return savedAssessment;
+
+        } catch (err) {
+            console.error('Erro ao gerar trilha com IA:', err);
+            // Em caso de erro da IA, salva apenas uma mensagem de erro
+            const assessmentData: Omit<TrilhaPersonalizada, 'id'> = {
+                interesse: formData.objetivo,
+                dificuldade: formData.dificuldade,
+                disponibilidade: formData.tempoDisponivel,
+                respostaIA: `❌ ERRO NA GERAÇÃO DA IA: ${err instanceof Error ? err.message : 'Erro desconhecido'}. A IA não conseguiu gerar uma trilha personalizada neste momento.`,
+                modulos: []
+            };
+
+            return await fetchApi('/trilhasPersonalizadas', {
+                method: 'POST',
+                body: JSON.stringify(assessmentData)
+            });
         }
-
-        // Select modules based on objective and limit to 3-5 modules
-        let selectedModules: Sugestao[] = [];
-        const maxModules = formData.tempoDisponivel === '5-10' ? 3 : formData.tempoDisponivel === '10-20' ? 4 : 5;
-
-        if (formData.objetivo === 'frontend') {
-            selectedModules = filteredSugestoes
-                .filter(s => s.titulo.toLowerCase().includes('react') ||
-                           s.titulo.toLowerCase().includes('javascript') ||
-                           s.titulo.toLowerCase().includes('html') ||
-                           s.titulo.toLowerCase().includes('css') ||
-                           s.titulo.toLowerCase().includes('frontend'))
-                .slice(0, maxModules);
-        } else if (formData.objetivo === 'backend') {
-            selectedModules = filteredSugestoes
-                .filter(s => s.titulo.toLowerCase().includes('python') ||
-                           s.titulo.toLowerCase().includes('django') ||
-                           s.titulo.toLowerCase().includes('api') ||
-                           s.titulo.toLowerCase().includes('backend') ||
-                           s.titulo.toLowerCase().includes('node'))
-                .slice(0, maxModules);
-        } else if (formData.objetivo === 'fullstack') {
-            selectedModules = filteredSugestoes
-                .filter(s => s.titulo.toLowerCase().includes('full') ||
-                           s.titulo.toLowerCase().includes('stack') ||
-                           s.titulo.toLowerCase().includes('javascript') ||
-                           s.titulo.toLowerCase().includes('react') ||
-                           s.titulo.toLowerCase().includes('node'))
-                .slice(0, maxModules);
-        } else if (formData.objetivo === 'dados') {
-            selectedModules = filteredSugestoes
-                .filter(s => s.titulo.toLowerCase().includes('machine') ||
-                           s.titulo.toLowerCase().includes('python') ||
-                           s.titulo.toLowerCase().includes('data') ||
-                           s.titulo.toLowerCase().includes('ciência'))
-                .slice(0, maxModules);
-        } else if (formData.objetivo === 'mobile') {
-            selectedModules = filteredSugestoes
-                .filter(s => s.titulo.toLowerCase().includes('react native') ||
-                           s.titulo.toLowerCase().includes('mobile') ||
-                           s.titulo.toLowerCase().includes('app'))
-                .slice(0, maxModules);
-        }
-
-        // If not enough modules found, fill with general programming suggestions
-        if (selectedModules.length < maxModules) {
-            const generalModules = filteredSugestoes
-                .filter(s => !selectedModules.includes(s))
-                .slice(0, maxModules - selectedModules.length);
-            selectedModules = [...selectedModules, ...generalModules];
-        }
-
-        // Convert to module format
-        const modulos = selectedModules.map((sugestao, index) => ({
-            id: index + 1,
-            titulo: sugestao.titulo,
-            descricao: sugestao.descricao,
-            duracao: sugestao.duracao,
-            videoUrl: sugestao.link
-        }));
-
-        // Prepare assessment data
-        const assessmentData = {
-            interesse: formData.objetivo,
-            experiencia: formData.experiencia,
-            disponibilidade: formData.tempoDisponivel,
-            preferenciasAprendizado: formData.preferencias,
-            respostaIA: `Baseado no seu perfil, recomendo focar em ${formData.objetivo} para se destacar no mercado. Selecionamos ${modulos.length} recursos personalizados para você.`,
-            modulos
-        };
-
-        // Save to JSON-server
-        const savedAssessment = await fetchApi('/trilhasPersonalizadas', {
-            method: 'POST',
-            body: JSON.stringify(assessmentData)
-        });
-
-        return savedAssessment;
     }, [fetchApi]);
 
     const getTrilhasPersonalizadas = useCallback(async (userEmail?: string) => {
