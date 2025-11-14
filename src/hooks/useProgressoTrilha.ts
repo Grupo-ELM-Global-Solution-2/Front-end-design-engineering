@@ -37,7 +37,6 @@ export function useProgressoTrilha(selectedTrilha: TrilhaPronta | null) {
                             // Só considerar progresso para módulos desta trilha
                             if (trilhaModuleIds.has(moduleId)) {
                                 // Se já existe um registro para este módulo, mantém o mais recente
-                                // (assumindo que registros mais recentes têm IDs maiores)
                                 if (!progressByModule.has(moduleId) || (progressByModule.get(moduleId)?.id ?? 0) < progress.id) {
                                     progressByModule.set(moduleId, progress);
                                 }

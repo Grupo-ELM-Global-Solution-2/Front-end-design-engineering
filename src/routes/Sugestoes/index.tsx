@@ -66,7 +66,7 @@ export default function Sugestoes() {
                             <div key={sugestao.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                                 <div className="p-6">
                                     <div className="flex items-center justify-between mb-4">
-                                        <div className="text-3xl">{sugestao.thumbnail}</div>
+                                        <div className="text-3xl">{getTipoIcon(sugestao.tipo)}</div>
                                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                                             sugestao.dificuldade === 'Iniciante' ? 'bg-green-100 text-green-800' :
                                             sugestao.dificuldade === 'Intermediário' ? 'bg-yellow-100 text-yellow-800' :

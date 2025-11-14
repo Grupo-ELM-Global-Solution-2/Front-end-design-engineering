@@ -105,10 +105,7 @@ export default function TrilhasProntas() {
                                         .map((trilha) => (
                                             <div key={trilha.id} className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer group" onClick={() => setSelectedTrilha(trilha)}>
                                                 <div className="text-center mb-4">
-                                                    <div className="text-4xl mb-2">{trilha.icone}</div>
-                                                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
-                                                        {trilha.nome}
-                                                    </h3>
+                                                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">{trilha.nome}</h3>
                                                 </div>
                                                 <p className="text-gray-600 text-sm mb-4">{trilha.descricao}</p>
                                                 <div className="flex justify-between text-sm text-gray-500 mb-4">
@@ -135,7 +132,6 @@ export default function TrilhasProntas() {
                             </div>
 
                             <div className="text-center mb-8">
-                                <div className="text-4xl md:text-6xl mb-4">{selectedTrilha.icone}</div>
                                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">{selectedTrilha.nome}</h2>
                                 <p className="text-gray-600 max-w-lg md:max-w-2xl mx-auto text-sm md:text-base">{selectedTrilha.descricao}</p>
                                 <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 mt-4 text-sm text-gray-500">

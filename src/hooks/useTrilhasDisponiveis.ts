@@ -19,8 +19,7 @@ export function useTrilhasDisponiveis() {
                     nome: trilhaAPI.nome,
                     descricao: trilhaAPI.descricao,
                     dificuldade: trilhaAPI.dificuldade,
-                    modulos: trilhaAPI.modulos,
-                    icone: trilhaAPI.icone
+                    modulos: trilhaAPI.modulos
                 }));
 
                 setTrilhasDisponiveis(trilhas);

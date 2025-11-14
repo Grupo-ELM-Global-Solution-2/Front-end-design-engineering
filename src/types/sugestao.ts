@@ -5,7 +5,6 @@ export interface Sugestao {
     descricao: string;
     duracao: string;
     dificuldade: string;
-    thumbnail: string;
     link: string;
 }
 

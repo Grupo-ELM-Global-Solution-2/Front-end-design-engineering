@@ -2,9 +2,9 @@
   "usuarios": [
     {
       "id": "1",
-      "nome": "João Silva",
-      "email": "enzin@gmail.com",
-      "password": "123456",
+      "nome": "Enzo",
+      "email": "enzo.okuizumi@gmail.com",
+      "password": "123@mudar",
       "telefone": "(11) 88888-8888",
       "biografia": "Desenvolvedor apaixonado por tecnologia e inovação."
     }
@@ -48,6 +48,39 @@
           "duracao": "2 semanas"
         }
       ]
+    },
+    {
+      "id": "b3be",
+      "interesse": "frontend",
+      "dificuldade": "intermediario",
+      "disponibilidade": "10-20",
+      "respostaIA": "Com sua experiência intermediária e dedicação de 10-20 horas semanais, você está prestes a dar um salto significativo no frontend! Esta trilha é meticulosamente projetada para você, começando com um reforço em HTML e CSS, seguido pela imersão em JavaScript moderno. Em seguida, você mergulhará no React.js, a biblioteca mais popular do mercado, e aprenderá a construir aplicações interativas e responsivas. Para solidificar seus conhecimentos, exploraremos TypeScript, uma ferramenta essencial para código robusto e escalável. Ao final, você estará equipado com as habilidades para criar, testar, e implantar aplicações frontend de alta qualidade.",
+      "modulos": [
+        {
+          "id": 1,
+          "titulo": "HTML5 e CSS3 Avançado: Fundamentos Reforçados",
+          "descricao": "Revisaremos os conceitos essenciais de HTML e CSS, aprofundando em técnicas avançadas como layout flexível, grid e seletores CSS complexos, garantindo que você construa interfaces elegantes e responsivas.",
+          "duracao": "2 semanas"
+        },
+        {
+          "id": 2,
+          "titulo": "JavaScript ES6+: Dominando a Linguagem Moderna",
+          "descricao": "Aprofundaremos seus conhecimentos em JavaScript, explorando os recursos do ES6+ (arrow functions, classes, módulos, etc.) para escrever código mais limpo, eficiente e legível. Este módulo é crucial para sua jornada no React.",
+          "duracao": "3 semanas"
+        },
+        {
+          "id": 3,
+          "titulo": "React.js e Ecossistema: Construindo Aplicações",
+          "descricao": "Aqui, você entrará no mundo do React.js. Aprenderá os conceitos de componentes, JSX, gerenciamento de estado e como construir interfaces de usuário dinâmicas e responsivas. Criaremos projetos práticos para consolidar o aprendizado.",
+          "duracao": "5 semanas"
+        },
+        {
+          "id": 4,
+          "titulo": "TypeScript: Fortalecendo Seu Código",
+          "descricao": "Adicionaremos tipagem estática ao seu JavaScript com TypeScript. Você aprenderá a escrever código mais robusto, com detecção de erros em tempo de desenvolvimento, facilitando a manutenção e a escalabilidade dos seus projetos.",
+          "duracao": "3 semanas"
+        }
+      ]
     }
   ],
   "progresso": [
@@ -64,7 +97,7 @@
       "idModulo": 3
     },
     {
-      "id": "9413",
+      "id": "3968",
       "idUser": 1,
       "status": "em andamento",
       "idModulo": 1
@@ -75,7 +108,6 @@
       "id": "1",
       "nome": "Frontend Básico",
       "descricao": "Trilha completa para desenvolvedores frontend iniciantes",
-      "icone": "💻",
       "dificuldade": "Básico",
       "modulos": [
         {
@@ -105,7 +137,6 @@
       "id": "2",
       "nome": "Backend Básico (Python)",
       "descricao": "Trilha completa para desenvolvedores backend iniciantes",
-      "icone": "⚙️",
       "dificuldade": "Básico",
       "modulos": [
         {
@@ -128,7 +159,6 @@
       "id": "3",
       "nome": "Fullstack Básico (Node.js)",
       "descricao": "Trilha completa para desenvolvedores fullstack iniciantes",
-      "icone": "🚀",
       "dificuldade": "Básico",
       "modulos": [
         {
@@ -158,7 +188,6 @@
       "id": "4",
       "nome": "Data Science Básico",
       "descricao": "Introdução à ciência de dados e machine learning",
-      "icone": "📊",
       "dificuldade": "Básico",
       "modulos": [
         {
@@ -188,7 +217,6 @@
       "id": "5",
       "nome": "Mobile Básico (React Native)",
       "descricao": "Desenvolvimento de aplicativos móveis",
-      "icone": "📱",
       "dificuldade": "Básico",
       "modulos": [
         {
@@ -218,7 +246,6 @@
       "id": "6",
       "nome": "DevOps Básico",
       "descricao": "Introdução às práticas de DevOps",
-      "icone": "🔧",
       "dificuldade": "Básico",
       "modulos": [
         {
@@ -248,7 +275,6 @@
       "id": "7",
       "nome": "Cybersecurity Básico",
       "descricao": "Fundamentos da segurança da informação",
-      "icone": "🔒",
       "dificuldade": "Básico",
       "modulos": [
         {
@@ -278,7 +304,6 @@
       "id": "8",
       "nome": "Game Development Básico",
       "descricao": "Criação de jogos digitais",
-      "icone": "🎮",
       "dificuldade": "Básico",
       "modulos": [
         {
@@ -308,7 +333,6 @@
       "id": "9",
       "nome": "Frontend Intermediário",
       "descricao": "Aprofundamento em desenvolvimento frontend moderno",
-      "icone": "💻",
       "dificuldade": "Intermediário",
       "modulos": [
         {
@@ -345,7 +369,6 @@
       "id": "10",
       "nome": "Backend Intermediário (Node.js)",
       "descricao": "Desenvolvimento backend avançado com Node.js",
-      "icone": "⚙️",
       "dificuldade": "Intermediário",
       "modulos": [
         {
@@ -382,7 +405,6 @@
       "id": "11",
       "nome": "Fullstack Intermediário",
       "descricao": "Integração completa frontend e backend",
-      "icone": "🚀",
       "dificuldade": "Intermediário",
       "modulos": [
         {
@@ -419,7 +441,6 @@
       "id": "12",
       "nome": "Data Science Intermediário",
       "descricao": "Machine Learning e análise avançada de dados",
-      "icone": "📊",
       "dificuldade": "Intermediário",
       "modulos": [
         {
@@ -456,7 +477,6 @@
       "id": "13",
       "nome": "Mobile Intermediário",
       "descricao": "Desenvolvimento mobile avançado",
-      "icone": "📱",
       "dificuldade": "Intermediário",
       "modulos": [
         {
@@ -493,7 +513,6 @@
       "id": "14",
       "nome": "DevOps Intermediário",
       "descricao": "Práticas avançadas de DevOps e infraestrutura",
-      "icone": "🔧",
       "dificuldade": "Intermediário",
       "modulos": [
         {
@@ -530,7 +549,6 @@
       "id": "15",
       "nome": "Frontend Avançado",
       "descricao": "Técnicas avançadas de desenvolvimento frontend",
-      "icone": "💻",
       "dificuldade": "Avançado",
       "modulos": [
         {
@@ -567,7 +585,6 @@
       "id": "16",
       "nome": "Backend Avançado (Node.js)",
       "descricao": "Arquiteturas backend de alta performance",
-      "icone": "⚙️",
       "dificuldade": "Avançado",
       "modulos": [
         {
@@ -604,7 +621,6 @@
       "id": "17",
       "nome": "Data Science Avançado",
       "descricao": "Inteligência artificial e análise preditiva",
-      "icone": "📊",
       "dificuldade": "Avançado",
       "modulos": [
         {
@@ -646,7 +662,6 @@
       "descricao": "Tutorial completo de React em português do canal Programador a Bordo.",
       "duracao": "4 horas",
       "dificuldade": "Iniciante",
-      "thumbnail": "🎥",
       "link": "https://www.youtube.com/watch?v=0mYq5LrQN1s"
     },
     {
@@ -656,7 +671,6 @@
       "descricao": "Guia completo sobre algoritmos essenciais para desenvolvedores.",
       "duracao": "25 min leitura",
       "dificuldade": "Intermediário",
-      "thumbnail": "📄",
       "link": "https://www.devmedia.com.br/algoritmos-e-estruturas-de-dados-em-javascript/40739"
     },
     {
@@ -666,7 +680,6 @@
       "descricao": "Curso gratuito de Python completo na plataforma Alura.",
       "duracao": "40 horas",
       "dificuldade": "Iniciante",
-      "thumbnail": "🎓",
       "link": "https://www.alura.com.br/curso-online-python-3-introducao-a-nova-versao-da-linguagem"
     },
     {
@@ -676,7 +689,6 @@
       "descricao": "Tutorial prático para criar uma API REST completa com Node.js.",
       "duracao": "2.5 horas",
       "dificuldade": "Intermediário",
-      "thumbnail": "⚙️",
       "link": "https://www.youtube.com/watch?v=K5QaTfE5ylk"
     },
     {
@@ -686,7 +698,6 @@
       "descricao": "Entenda quando usar Grid ou Flexbox com exemplos práticos.",
       "duracao": "18 min",
       "dificuldade": "Intermediário",
-      "thumbnail": "🎥",
       "link": "https://www.youtube.com/watch?v=x-4z_u8LcGc"
     },
     {
@@ -696,7 +707,6 @@
       "descricao": "Resumo dos conceitos de Clean Code aplicados ao desenvolvimento.",
       "duracao": "15 min leitura",
       "dificuldade": "Avançado",
-      "thumbnail": "📄",
       "link": "https://www.devmedia.com.br/clean-code-principios-e-praticas/28793"
     },
     {
@@ -706,7 +716,6 @@
       "descricao": "Curso completo de Machine Learning na Udemy em português.",
       "duracao": "42 horas",
       "dificuldade": "Avançado",
-      "thumbnail": "🎓",
       "link": "https://www.udemy.com/course/machine-learning-com-python-pt/"
     },
     {
@@ -716,7 +725,6 @@
       "descricao": "Crie seu primeiro aplicativo mobile com React Native.",
       "duracao": "3.5 horas",
       "dificuldade": "Intermediário",
-      "thumbnail": "📱",
       "link": "https://www.youtube.com/watch?v=1-0W3-8Y5s"
     },
     {
@@ -726,7 +734,6 @@
       "descricao": "Currículo completo para se tornar desenvolvedor full-stack.",
       "duracao": "200 horas",
       "dificuldade": "Iniciante",
-      "thumbnail": "🎓",
       "link": "https://www.alura.com.br/formacao-js-fullstack"
     },
     {
@@ -736,7 +743,6 @@
       "descricao": "Guia prático para começar a contribuir com projetos open source.",
       "duracao": "12 min leitura",
       "dificuldade": "Intermediário",
-      "thumbnail": "📄",
       "link": "https://www.alura.com.br/artigos/como-contribuir-com-projetos-open-source"
     },
     {
@@ -746,7 +752,6 @@
       "descricao": "Desenvolva um portfólio pessoal moderno com HTML, CSS e JS.",
       "duracao": "5 horas",
       "dificuldade": "Iniciante",
-      "thumbnail": "💼",
       "link": "https://www.youtube.com/watch?v=KErtfknVy0I"
     },
     {
@@ -756,7 +761,6 @@
       "descricao": "Closures, prototypes, async/await explicados em português.",
       "duracao": "50 min",
       "dificuldade": "Avançado",
-      "thumbnail": "🎥",
       "link": "https://www.youtube.com/watch?v=i6Oi-YtXnAU"
     }
   ]

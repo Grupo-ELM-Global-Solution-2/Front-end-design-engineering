@@ -12,7 +12,6 @@ export interface TrilhaPronta {
     id: string;
     nome: string;
     descricao: string;
-    icone: string;
     dificuldade: string;
     modulos: Modulo[];
 }
