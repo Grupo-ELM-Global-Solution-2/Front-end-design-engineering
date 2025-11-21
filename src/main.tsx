@@ -7,12 +7,14 @@ import Home from './routes/Home/index.tsx';
 import Avaliacao from './routes/Avaliacao/index.tsx';
 import Error from './routes/Error/index.tsx';
 import Integrantes from './routes/Integrantes/index.tsx';
+import Contato from './routes/Contato/index.tsx';
 
 const router = createBrowserRouter([
   {path:"/", element:<App/>, errorElement:<Error/>, children:[
     {path:"/", element: <Home/>},
     {path:"/avaliacao", element: <Avaliacao/>},
     {path:"/integrantes", element: <Integrantes/>},
+    {path:"/contato", element: <Contato/>},
   ]}
 ]);
 
