@@ -1,1 +1,76 @@
 @import "tailwindcss";
+
+/* Enable class-based dark mode for Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer components {
+    .max-container {
+        @apply max-w-[1200px] mx-auto px-4;
+    }
+
+    .footer-column {
+        @apply flex flex-col items-center md:items-start md:justify-center;
+    }
+
+    .footer-column h3,
+    .footer-column h4 {
+        @apply text-white mb-1.5 text-[1em] text-lg font-bold;
+    }
+
+    .footer-column p,
+    .footer-column ul li a {
+        @apply text-[#c0c0c0] text-[0.9em] mb-[6px] md:text-[17px];
+    }
+
+    .footer-column ul li a:hover {
+        @apply text-white underline;
+    }
+
+    .social-icons {
+        @apply flex m-3 justify-center gap-3;
+    }
+
+    .main-bg {
+        @apply bg-linear-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-gray-900 dark:text-gray-100 min-h-screen transition-colors duration-300;
+    }
+
+    .hero-section {
+        @apply bg-linear-to-r from-indigo-600 to-purple-600 dark:from-indigo-700 dark:to-purple-700 text-white py-20 px-6 text-center;
+    }
+
+    .section-padding {
+        @apply py-20 px-6;
+    }
+
+    .section-padding-bg {
+        @apply py-20 px-6 dark:bg-gray-800;
+    }
+
+    .section-title {
+        @apply text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-gray-100 mb-6;
+    }
+
+    .section-subtitle {
+        @apply text-center text-lg text-gray-600 dark:text-gray-400 mb-12 max-w-3xl mx-auto;
+    }
+
+    .form-input {
+        @apply w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 transition-colors;
+    }
+
+    .card-white {
+        @apply bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 transition-colors duration-300;
+    }
+
+    .text-center-mb8 {
+        @apply text-center mb-8;
+    }
+
+    .btn-primary {
+        @apply bg-blue-600 dark:bg-blue-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors;
+    }
+
+    .btn-secondary {
+        @apply bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-200 py-3 px-6 rounded-lg font-semibold hover:bg-gray-400 dark:hover:bg-gray-500 transition-colors;
+    }
+}
