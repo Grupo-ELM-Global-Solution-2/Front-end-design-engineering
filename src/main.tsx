@@ -6,11 +6,19 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './routes/Home/index.tsx';
 import Avaliacao from './routes/Avaliacao/index.tsx';
 import Error from './routes/Error/index.tsx';
+import Integrantes from './routes/Integrantes/index.tsx';
+import Contato from './routes/Contato/index.tsx';
+import Faq from './routes/Faq/index.tsx';
+import TrilhasProntas from './routes/TrilhasProntas/index.tsx';
 
 const router = createBrowserRouter([
   {path:"/", element:<App/>, errorElement:<Error/>, children:[
     {path:"/", element: <Home/>},
     {path:"/avaliacao", element: <Avaliacao/>},
+    {path:"/integrantes", element: <Integrantes/>},
+    {path:"/contato", element: <Contato/>},
+    {path:"/faq", element: <Faq/>},
+    {path:"/trilha-prontas", element: <TrilhasProntas/>},
   ]}
 ]);
 
