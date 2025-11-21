@@ -16,3 +16,13 @@ export default function Rodape() {
                     <li><NavLink to={'/integrantes'} >Integrantes</NavLink></li>
                     <li><NavLink to={'/faq'} >FAQ</NavLink></li>
                     <li><NavLink to={'/contato'} >Contato</NavLink></li>
+                </ul>
+                
+            </div>
+            <div className="footer-column">
+                <h4>Serviços</h4>
+                <ul className="grid">
+                    <li><NavLink to={'/perfil'} >Perfil</NavLink></li>
+                    <li><NavLink to={'/trilha-personalizada'} >Trilhas Personalizadas</NavLink></li>
+                    <li><NavLink to={'/trilhas-prontas'} >Trilhas Prontas</NavLink></li>
+                    <li><NavLink to={'/sugestoes'} >Sugestões</NavLink></li>
