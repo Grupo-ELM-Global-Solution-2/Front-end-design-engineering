@@ -26,3 +26,19 @@ export default function Rodape() {
                     <li><NavLink to={'/trilha-personalizada'} >Trilhas Personalizadas</NavLink></li>
                     <li><NavLink to={'/trilhas-prontas'} >Trilhas Prontas</NavLink></li>
                     <li><NavLink to={'/sugestoes'} >Sugestões</NavLink></li>
+                </ul>
+            </div>
+            <div className="footer-column">
+                <h4>Contato</h4>
+                <p>ReIntegrAI</p>
+                <p>São Paulo - SP</p>
+                <p>Brasil</p>
+                <p>Telefone: (11) 99999-9999</p>
+                <p>Email: contato@reintegr.ai</p>
+            </div>
+        <div className="text-center p-3 border-t border-solid border-t-[#2c3894] col-span-1 md:col-span-2 lg:col-span-4">
+            <p>© 2024 ReIntegrAI. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+  );
+}
