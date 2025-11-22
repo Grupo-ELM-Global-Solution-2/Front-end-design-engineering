@@ -1,16 +1,17 @@
-import { useCallback, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useCallback } from 'react';
 import { useApiBase } from './useApiBase';
 import type { User } from '../types/user';
 
 // Hook específico para autenticação
 export function useAuth() {
     const { loading, error, fetchApi } = useApiBase();
-    const navigate = useNavigate();
 
     const login = useCallback(async (email: string, password: string) => {
         const user = await fetchApi(`/usuario/email/${email}`);
         if (user && user.senha === password) {
+            if (!user.idUser) {
+                throw new Error('Erro ao fazer login: ID do usuário inválido');
+            }
             localStorage.setItem('isLoggedIn', 'true');
             localStorage.setItem('idUser', user.idUser.toString());
             localStorage.setItem('userName', user.nome);
@@ -30,11 +31,25 @@ export function useAuth() {
             method: 'POST',
             body: JSON.stringify({ nome: name, email, senha: password })
         });
+
         if (newUser) {
+            // Tenta diferentes formatos de resposta da API
+            let userId = newUser.idUser;
+
+            // Se o ID não vier na resposta, busca o usuário recém-criado
+            if (!userId) {
+                const fetchedUser = await fetchApi(`/usuario/email/${email}`);
+                if (fetchedUser && fetchedUser.idUser) {
+                    userId = fetchedUser.idUser;
+                } else {
+                    throw new Error('Erro ao criar conta: ID do usuário não retornado');
+                }
+            }
+
             localStorage.setItem('isLoggedIn', 'true');
-            localStorage.setItem('idUser', (newUser as User).idUser.toString());
-            localStorage.setItem('userName', (newUser as User).nome);
-            localStorage.setItem('userEmail', (newUser as User).email);
+            localStorage.setItem('idUser', userId.toString());
+            localStorage.setItem('userName', newUser.nome || name);
+            localStorage.setItem('userEmail', newUser.email || email);
             return newUser;
         }
         throw new Error('Erro ao criar conta');
@@ -48,13 +63,10 @@ export function useAuth() {
         return localStorage.getItem('isLoggedIn') === 'true';
     }, []);
 
-    const requireAuth = useCallback(() => {
-        useEffect(() => {
-            if (!isAuthenticated()) {
-                navigate('/login');
-            }
-        }, []);
-    }, [navigate, isAuthenticated]);
+    const getCurrentUserId = useCallback(() => {
+        const idUser = localStorage.getItem('idUser');
+        return idUser ? parseInt(idUser, 10) : null;
+    }, []);
 
     return {
         loading,
@@ -63,7 +75,7 @@ export function useAuth() {
         register,
         logout,
         isAuthenticated,
-        requireAuth,
+        getCurrentUserId,
     };
 }
 

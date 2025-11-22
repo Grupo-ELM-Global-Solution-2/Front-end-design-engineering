@@ -5,9 +5,9 @@ import "./globals.css"
 
 export default function App() {
     return (
-        <div>
+        <div className="min-h-screen dark:bg-gray-900 bg-white transition-colors duration-300">
             <Cabecalho />
-                <Outlet />
+            <Outlet />
             <Rodape />
         </div>
     )

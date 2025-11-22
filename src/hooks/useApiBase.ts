@@ -19,15 +19,13 @@ export const useApiBase = () => {
         },
       });
 
-      if (response.status === 404 && endpoint.includes('/usuario/')) {
+      if (response.status === 404 && (endpoint.includes('/usuario/') || endpoint.includes('/trilhapersonalizada/'))) {
         return null;
       }
 
       if (!response.ok) {
         const errorBody = await response.text();
-        if (!(response.status === 404 && endpoint.includes('/usuario/'))) {
-          console.error(`Erro ${response.status} em ${endpoint}: ${errorBody}`);
-        }
+        console.error(`Erro ${response.status} em ${endpoint}: ${errorBody}`);
         throw new Error(`Erro ${response.status} ao ${options?.method || 'buscar'} dados.`);
       }
 
@@ -53,7 +51,7 @@ export const useApiBase = () => {
       // Para GET que retornam listas
       if (endpoint.includes('trilhas')) return [];
       if (endpoint.includes('progresso')) return [];
-      if (endpoint.includes('trilhasPersonalizadas')) return [];
+      if (endpoint.includes('trilhapersonalizada')) return [];
       return []; // Para listas
     } finally {
       setLoading(false);

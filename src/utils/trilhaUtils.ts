@@ -20,11 +20,11 @@ export const categoriasOptions = [
     { value: 'frontend', label: 'Frontend' },
     { value: 'backend', label: 'Backend' },
     { value: 'fullstack', label: 'Fullstack' },
-    { value: 'datascience', label: 'Data Science' },
+    { value: 'data science', label: 'Data Science' },
     { value: 'mobile', label: 'Mobile' },
     { value: 'devops', label: 'DevOps' },
     { value: 'cybersecurity', label: 'Cybersecurity' },
-    { value: 'gamedev', label: 'Game Development' },
+    { value: 'game Development', label: 'Game Development' },
 ];
 
 export const dificuldades = [
