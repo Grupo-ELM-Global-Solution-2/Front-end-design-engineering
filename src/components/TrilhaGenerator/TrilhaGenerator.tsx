@@ -73,7 +73,7 @@ export default function TrilhaGenerator({ onTrilhaGerada, onCancel }: TrilhaGene
                     </select>
                 </div>
 
-                <div className="flex space-x-4">
+                <div className="flex flex-col gap-4 sm:flex-row sm:space-x-4">
                     <button onClick={gerarTrilha} disabled={loading || !formData.objetivo || !formData.dificuldade || !formData.tempoDisponivel} className="btn-primary flex-1 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
                         {loading ? (
                             <div className="flex items-center justify-center space-x-2">

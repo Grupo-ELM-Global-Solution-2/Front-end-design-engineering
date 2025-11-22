@@ -119,9 +119,9 @@ export default function TrilhaPersonalizada() {
                         <TrilhaGenerator onTrilhaGerada={handleTrilhaGerada} onCancel={handleCancelGenerator} />
                     ) : (
                         <div className="space-y-6">
-                            <div className="flex justify-between items-center">
+                            <div className="flex flex-col items-stretch gap-4 md:flex-row md:justify-between md:items-center">
                                 <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Suas Trilhas Personalizadas</h2>
-                                <button onClick={handleAddTrilha} disabled={isLimitReached} className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">Adicionar Nova Trilha</button>
+                                <button onClick={handleAddTrilha} disabled={isLimitReached} className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer w-full md:w-auto whitespace-nowrap">Adicionar Nova Trilha</button>
                             </div>
 
                             {loading ? (

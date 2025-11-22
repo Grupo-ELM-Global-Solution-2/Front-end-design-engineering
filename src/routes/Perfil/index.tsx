@@ -70,10 +70,10 @@ export default function Perfil() {
             <section className="section-padding">
                 <div className="max-container">
                     <div className="card-white mb-8">
-                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 gap-4">
+                        <div className="flex flex-col items-stretch gap-4 mb-6 sm:flex-row sm:justify-between sm:items-center">
                             <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100">Informações Pessoais</h2>
                             {!isEditing ? (
-                                <button onClick={() => setIsEditing(true)} className="btn-primary w-full sm:w-auto cursor-pointer">Editar Perfil</button>
+                                <button onClick={() => setIsEditing(true)} className="btn-primary w-full sm:w-auto cursor-pointer whitespace-nowrap">Editar Perfil</button>
                             ) : (
                                 <div className="flex flex-col sm:flex-row gap-2 sm:space-x-2 w-full sm:w-auto">
                                     <button onClick={handleSave} className="bg-green-600 dark:bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-700 dark:hover:bg-green-600 transition-colors flex-1 sm:flex-none cursor-pointer">Salvar</button>
@@ -99,7 +99,7 @@ export default function Perfil() {
                                     {isEditing ? (
                                         <input type="text" name="nome" value={userInfo.nome} onChange={handleInputChange} className="form-input" required />
                                     ) : (
-                                        <p className="text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-700 px-3 py-2 rounded-lg">{userInfo.nome || 'Não informado'}</p>
+                                        <p className="form-input break-all">{userInfo.nome || 'Não informado'}</p>
                                     )}
                                 </div>
                                 <div>
@@ -107,7 +107,7 @@ export default function Perfil() {
                                     {isEditing ? (
                                         <input type="email" name="email" value={userInfo.email} onChange={handleInputChange} className="form-input" required />
                                     ) : (
-                                        <p className="text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-700 px-3 py-2 rounded-lg">{userInfo.email || 'Não informado'}</p>
+                                        <p className="form-input break-all">{userInfo.email || 'Não informado'}</p>
                                     )}
                                 </div>
                                 <div>
@@ -118,7 +118,7 @@ export default function Perfil() {
                                             <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">{showPassword ? '🙈' : '👁️'}</button>
                                         </div>
                                     ) : (
-                                        <p className="text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-700 px-3 py-2 rounded-lg">*********</p>
+                                        <p className="form-input">•••••</p>
                                     )}
                                 </div>
                             </div>
