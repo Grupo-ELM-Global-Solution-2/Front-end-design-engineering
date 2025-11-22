@@ -15,9 +15,7 @@ export default function Contato() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle form submission here
         console.log('Form submitted:', formData);
-        // Reset form
         setFormData({ nome: '', email: '', assunto: '', mensagem: '' });
     };
 
@@ -95,28 +93,17 @@ export default function Contato() {
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nome Completo</label>
-                                    <input type="text" name="nome" value={formData.nome} onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-                                        placeholder="Seu nome completo"
-                                        required
-                                    />
+                                    <input type="text" name="nome" value={formData.nome} onChange={handleChange} className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100" placeholder="Seu nome completo" required />
                                 </div>
 
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">E-mail</label>
-                                    <input type="email" name="email" value={formData.email} onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-                                        placeholder="seu@email.com"
-                                        required
-                                    />
+                                    <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100" placeholder="seu@email.com" required />
                                 </div>
 
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Assunto</label>
-                                    <select name="assunto" value={formData.assunto} onChange={handleChange}
-                                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-                                        required
-                                    >
+                                    <select name="assunto" value={formData.assunto} onChange={handleChange} className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100" required>
                                         <option value="">Selecione um assunto</option>
                                         <option value="duvida">Dúvida sobre a plataforma</option>
                                         <option value="suporte">Suporte técnico</option>
@@ -128,16 +115,10 @@ export default function Contato() {
 
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Mensagem</label>
-                                    <textarea name="mensagem" value={formData.mensagem} onChange={handleChange} rows={5}
-                                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 resize-none bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-                                        placeholder="Digite sua mensagem aqui..."
-                                        required
-                                    />
+                                    <textarea name="mensagem" value={formData.mensagem} onChange={handleChange} rows={5} className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 resize-none bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100" placeholder="Digite sua mensagem aqui..." required />
                                 </div>
 
-                                <button type="submit" className="w-full bg-linear-to-r from-indigo-600 to-purple-600 dark:from-indigo-700 dark:to-purple-700 text-white py-4 px-6 rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 dark:hover:from-indigo-800 dark:hover:to-purple-800 hover:scale-105 transition-all duration-300 shadow-lg">
-                                    Enviar Mensagem
-                                </button>
+                                <button type="submit" className="w-full bg-linear-to-r from-indigo-600 to-purple-600 dark:from-indigo-700 dark:to-purple-700 text-white py-4 px-6 rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 dark:hover:from-indigo-800 dark:hover:to-purple-800 hover:scale-105 transition-all duration-300 shadow-lg">Enviar Mensagem</button>
                             </form>
                         </div>
                     </div>

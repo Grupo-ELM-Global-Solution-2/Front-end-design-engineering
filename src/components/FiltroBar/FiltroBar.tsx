@@ -41,11 +41,7 @@ const FiltroBar = memo(({
             <div className={`grid grid-cols-1 ${showSegundoFiltro ? 'md:grid-cols-2' : ''} gap-4`}>
                 <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Dificuldade</label>
-                    <select
-                        value={filtroDificuldade}
-                        onChange={onDificuldadeChange}
-                        className="form-input w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                    >
+                    <select value={filtroDificuldade} onChange={onDificuldadeChange} className="form-input w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                         {dificuldadeOptions.map(option => (
                             <option key={option.value} value={option.value}>{option.label}</option>
                         ))}
@@ -55,11 +51,7 @@ const FiltroBar = memo(({
                 {showSegundoFiltro && onSegundoFiltroChange && (
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{segundoFiltroLabel}</label>
-                        <select
-                            value={segundoFiltroValor}
-                            onChange={onSegundoFiltroChange}
-                            className="form-input w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        >
+                        <select value={segundoFiltroValor} onChange={onSegundoFiltroChange} className="form-input w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                             {segundoFiltroOptions.map(option => (
                                 <option key={option.value} value={option.value}>{option.label}</option>
                             ))}

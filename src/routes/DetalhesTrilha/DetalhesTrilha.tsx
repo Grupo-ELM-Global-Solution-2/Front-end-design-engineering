@@ -34,8 +34,6 @@ export default function DetalhesTrilha() {
                 const trilhaData = await getTrilhaById(Number(id));
 
                 if (trilhaData) {
-                    // Fetch all modules to filter for this trilha
-                    // Ideally the API would return modules with the trilha, but following existing pattern
                     const allModulos = await getAllModulos();
                     const modulosDaTrilha = allModulos
                         ? allModulos.filter((m: Modulo) => m.idTrilha === Number(id))
@@ -94,12 +92,7 @@ export default function DetalhesTrilha() {
                 <div className="text-center text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 p-8 rounded-lg">
                     <h2 className="text-xl font-bold mb-2">Ops!</h2>
                     <p>{error || errorApi || 'Trilha não encontrada'}</p>
-                    <button
-                        onClick={handleBack}
-                        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-                    >
-                        Voltar para Trilhas
-                    </button>
+                    <button onClick={handleBack} className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">Voltar para Trilhas</button>
                 </div>
             </div>
         );

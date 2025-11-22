@@ -42,8 +42,7 @@ export default function TrilhaPersonalizadaModal({ trilha, isOpen, onClose }: Tr
                         </div>
                         <div className="bg-linear-to-br from-purple-50 to-blue-50 rounded-xl p-4 sm:p-6">
                             <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4 flex items-center">
-                                <span className="w-2 h-2 bg-purple-600 rounded-full mr-2 sm:mr-3"></span>
-                                Recomendação da IA
+                                <span className="w-2 h-2 bg-purple-600 rounded-full mr-2 sm:mr-3"></span> Recomendação da IA
                             </h3>
                             <p className="text-gray-700 leading-relaxed italic text-sm sm:text-base">"{trilha.respostaIA}"</p>
                         </div>
