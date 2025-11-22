@@ -93,7 +93,6 @@ export function useProgresso() {
             });
         }
 
-        // Debug: log the full response
         if (result) {
             console.log('Resposta do backend:', result);
             if (!result.idProgresso) {

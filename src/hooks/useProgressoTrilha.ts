@@ -76,7 +76,6 @@ export function useProgressoTrilha(selectedTrilha: TrilhaPronta | null) {
         const modulo = selectedTrilha.modulos?.[index];
         if (!modulo) return;
 
-        // Otimistic update
         setModuleStatuses(prev => new Map(prev).set(index, newStatus));
 
         const existingProgressId = moduleProgressIds.get(index);
