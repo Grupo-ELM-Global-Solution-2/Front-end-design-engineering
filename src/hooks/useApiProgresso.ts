@@ -78,25 +78,46 @@ export function useProgresso() {
         };
 
         let result;
-        // Se tem idProgresso, faz UPDATE (PUT), senão faz CREATE (POST)
+
+        // Se tem idProgresso, faz UPDATE (PUT)
         if (progressData.idProgresso) {
-            console.log('Atualizando progresso:', progressData.idProgresso);
+            console.log('🔄 Atualizando progresso existente:', progressData.idProgresso);
             result = await fetchApi(`/progresso/${progressData.idProgresso}`, {
                 method: 'PUT',
                 body: JSON.stringify(payload)
             });
         } else {
-            console.log('Criando novo progresso para módulo:', progressData.idModulo);
-            result = await fetchApi('/progresso', {
-                method: 'POST',
-                body: JSON.stringify(payload)
-            });
+            // Se não tem idProgresso, primeiro verifica se já existe um registro
+            console.log('🔍 Verificando se já existe progresso para User:', progressData.idUser, 'Módulo:', progressData.idModulo);
+
+            const allProgress = await fetchApi('/progresso');
+            const existingProgress = Array.isArray(allProgress)
+                ? allProgress.find((p: ProgressoData) =>
+                    p.idUser === progressData.idUser && p.idModulo === progressData.idModulo
+                )
+                : null;
+
+            if (existingProgress) {
+                // Já existe - faz UPDATE
+                console.log('✏️ Registro já existe (ID:', existingProgress.idProgresso, ') - UPDATE');
+                result = await fetchApi(`/progresso/${existingProgress.idProgresso}`, {
+                    method: 'PUT',
+                    body: JSON.stringify(payload)
+                });
+            } else {
+                // Não existe - faz INSERT
+                console.log('Criando novo progresso para módulo:', progressData.idModulo);
+                result = await fetchApi('/progresso', {
+                    method: 'POST',
+                    body: JSON.stringify(payload)
+                });
+            }
         }
 
         if (result) {
-            console.log('Resposta do backend:', result);
+            console.log('✅ Operação concluída. Resposta do backend:', result);
             if (!result.idProgresso) {
-                console.warn('Backend retornou objeto sem idProgresso:', result);
+                console.warn('⚠️ Backend retornou objeto sem idProgresso:', result);
             }
         }
 

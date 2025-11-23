@@ -1,6 +1,6 @@
-export interface User {
-    idUser: number;
-    nome: string;
-    email: string;
-    senha?: string;
-}
+export type {
+    User,
+    LoginData,
+    RegisterData,
+    UpdateUserData
+} from '../schemas';

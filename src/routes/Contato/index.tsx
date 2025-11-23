@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { ContatoSchema } from '../../schemas';
+import { ZodError } from 'zod';
 
 export default function Contato() {
     const [formData, setFormData] = useState({
@@ -7,16 +9,47 @@ export default function Contato() {
         assunto: '',
         mensagem: ''
     });
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState('');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+        // Limpa erros ao digitar
+        if (error) setError('');
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
-        setFormData({ nome: '', email: '', assunto: '', mensagem: '' });
+        setError('');
+
+        try {
+            // Valida os dados com Zod
+            const validatedData = ContatoSchema.parse(formData);
+
+            // Salva a mensagem no localStorage
+            const contacts = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+            const newContact = {
+                ...validatedData,
+                id: Date.now(),
+                timestamp: new Date().toISOString()
+            };
+            contacts.push(newContact);
+            localStorage.setItem('contactMessages', JSON.stringify(contacts));
+
+            // Mostra mensagem de sucesso
+            setSuccess(true);
+            setFormData({ nome: '', email: '', assunto: '', mensagem: '' });
+
+            // Remove mensagem de sucesso após 5 segundos
+            setTimeout(() => setSuccess(false), 5000);
+        } catch (err) {
+            if (err instanceof ZodError) {
+                setError(err.issues[0].message);
+            } else {
+                setError('Erro ao enviar mensagem');
+            }
+        }
     };
 
     return (
@@ -89,6 +122,20 @@ export default function Contato() {
                         {/* Contact Form */}
                         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 transition-colors duration-300">
                             <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">Envie sua Mensagem</h3>
+
+                            {success && (
+                                <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+                                    <p className="text-green-600 dark:text-green-400 font-semibold">✓ Mensagem enviada com sucesso!</p>
+                                    <p className="text-green-600 dark:text-green-400 text-sm mt-1">Entraremos em contato em breve.</p>
+                                </div>
+                            )}
+
+                            {error && (
+                                <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                                    <p className="text-red-600 dark:text-red-400 font-semibold">✗ Erro na validação</p>
+                                    <p className="text-red-600 dark:text-red-400 text-sm mt-1">{error}</p>
+                                </div>
+                            )}
 
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div>
