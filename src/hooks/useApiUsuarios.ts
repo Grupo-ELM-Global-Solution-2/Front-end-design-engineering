@@ -7,7 +7,8 @@ export function useAuth() {
     const { loading, error, fetchApi } = useApiBase();
 
     const login = useCallback(async (email: string, password: string) => {
-        const user = await fetchApi(`/usuario/email/${email}`);
+        const normalizedEmail = email.toLowerCase();
+        const user = await fetchApi(`/usuario/email/${normalizedEmail}`);
         if (user && user.senha === password) {
             if (!user.idUser) {
                 throw new Error('Erro ao fazer login: ID do usuário inválido');
@@ -22,14 +23,15 @@ export function useAuth() {
     }, [fetchApi]);
 
     const register = useCallback(async (name: string, email: string, password: string) => {
-        const existingUser = await fetchApi(`/usuario/email/${email}`);
+        const normalizedEmail = email.toLowerCase();
+        const existingUser = await fetchApi(`/usuario/email/${normalizedEmail}`);
         if (existingUser) {
             throw new Error('Email já cadastrado');
         }
 
         const newUser = await fetchApi('/usuario', {
             method: 'POST',
-            body: JSON.stringify({ nome: name, email, senha: password })
+            body: JSON.stringify({ nome: name, email: normalizedEmail, senha: password })
         });
 
         if (newUser) {
@@ -38,7 +40,7 @@ export function useAuth() {
 
             // Se o ID não vier na resposta, busca o usuário recém-criado
             if (!userId) {
-                const fetchedUser = await fetchApi(`/usuario/email/${email}`);
+                const fetchedUser = await fetchApi(`/usuario/email/${normalizedEmail}`);
                 if (fetchedUser && fetchedUser.idUser) {
                     userId = fetchedUser.idUser;
                 } else {
@@ -49,7 +51,7 @@ export function useAuth() {
             localStorage.setItem('isLoggedIn', 'true');
             localStorage.setItem('idUser', userId.toString());
             localStorage.setItem('userName', newUser.nome || name);
-            localStorage.setItem('userEmail', newUser.email || email);
+            localStorage.setItem('userEmail', newUser.email || normalizedEmail);
             return newUser;
         }
         throw new Error('Erro ao criar conta');
