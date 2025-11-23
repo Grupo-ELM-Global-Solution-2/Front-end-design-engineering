@@ -87,7 +87,11 @@ export function useTrilhaPersonalizada() {
             };
 
             // Salva no backend
-            const idUser = localStorage.getItem('idUser') || '1';
+            const idUserStr = localStorage.getItem('idUser');
+            if (!idUserStr) {
+                throw new Error('Usuário não autenticado. Por favor, faça login novamente.');
+            }
+            const idUser = parseInt(idUserStr, 10);
             const today = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD (LocalDate)
             const savedAssessment = await fetchApi('/trilhapersonalizada', {
                 method: 'POST',
@@ -111,7 +115,11 @@ export function useTrilhaPersonalizada() {
                 modulos: []
             };
 
-            const idUser = localStorage.getItem('idUser');
+            const idUserStr = localStorage.getItem('idUser');
+            if (!idUserStr) {
+                throw new Error('Usuário não autenticado. Por favor, faça login novamente.');
+            }
+            const idUser = parseInt(idUserStr, 10);
             const today = new Date().toISOString().split('T')[0];
             return await fetchApi('/trilhapersonalizada', {
                 method: 'POST',

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useApiUsuarios';
+import { ZodError } from 'zod';
 
 export default function LoginCadastro() {
     const [isLogin, setIsLogin] = useState(true);
@@ -26,16 +27,21 @@ export default function LoginCadastro() {
 
         try {
             if (isLogin) {
-                // Login
+                // Login - Zod valida automaticamente
                 await login(formData.email, formData.password);
                 navigate('/perfil');
             } else {
-                // Cadastro
+                // Cadastro - Zod valida automaticamente (senha mínima 6 chars + 1 número)
                 await register(formData.nome, formData.email, formData.password);
                 navigate('/perfil');
             }
         } catch (err) {
-            setError(err instanceof Error ? err.message : 'Erro desconhecido');
+            if (err instanceof ZodError) {
+                // Trata erros de validação Zod com mensagens mais amigáveis
+                setError(err.issues[0].message);
+            } else {
+                setError(err instanceof Error ? err.message : 'Erro desconhecido');
+            }
         } finally {
             setIsLoading(false);
         }
@@ -62,8 +68,11 @@ export default function LoginCadastro() {
                 <div>
                     <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Senha</label>
                     <input type="password" name="password" value={formData.password} onChange={handleChange} className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100" required />
+                    {!isLogin && (
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Mínimo 6 caracteres, incluindo pelo menos 1 número</p>
+                    )}
                 </div>
-                {error && (<div className="text-red-600 text-sm text-center bg-red-50 p-2 rounded">{error}</div>)}
+                {error && (<div className="text-red-600 text-sm text-center bg-red-50 dark:bg-red-900/20 p-2 rounded">{error}</div>)}
 
                 <button type="submit" disabled={isLoading} className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
                     {isLoading ? (
