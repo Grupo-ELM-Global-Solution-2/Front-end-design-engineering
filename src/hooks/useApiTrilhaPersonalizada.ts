@@ -7,7 +7,7 @@ import { getTrilhaSteps } from '../data/trilhaSteps';
 // Inicializa a IA
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 if (!apiKey) {
-    throw new Error("VITE_GEMINI_API_KEY não encontrada no .env.local. Por favor, adicione sua chave lá.");
+    throw new Error("VITE_GEMINI_API_KEY não encontrada no .env, leia o README.md, contém um doc com a Chave.");
 }
 const genAI = new GoogleGenerativeAI(apiKey);
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-lite" });
