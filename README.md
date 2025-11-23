@@ -15,6 +15,10 @@
 
 ---
 
+![Aviso](https://img.shields.io/badge/Aviso-Crie_um_env_e_coloque_a_API_KEY_do_Gemini_que_está_no_doc_abaixo-red)
+
+**Doc API KEY**: [https://docs.google.com/document/d/1KfCKIaLT3HFQju2HQP9ZHMsdiOtK8jx8lUm4dA8jAhE/edit?usp=sharing](https://docs.google.com/document/d/1KfCKIaLT3HFQju2HQP9ZHMsdiOtK8jx8lUm4dA8jAhE/edit?usp=sharing)
+
 ## Sobre o Projeto
 
 O [ReIntegrAI](https://github.com/Grupo-ELM-Global-Solution-2/Front-end-design-engineering) é uma plataforma web desenvolvida como parte da disciplina de Front-End Design Engineering. Seu principal objetivo é oferecer uma interface digital intuitiva e acessível para profissionais em transição de carreira na área de tecnologia, utilizando inteligência artificial para personalizar trilhas de aprendizado.
