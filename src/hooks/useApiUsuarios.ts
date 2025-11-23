@@ -90,13 +90,19 @@ export function useUser() {
     }, [fetchApi]);
 
     const updateUser = useCallback(async (idUser: number, userData: Partial<{ nome: string; email: string; senha: string }>) => {
+        // Normaliza o email se estiver presente
+        const normalizedData = {
+            ...userData,
+            ...(userData.email && { email: userData.email.toLowerCase() })
+        };
+
         const updatedUser = await fetchApi(`/usuario/${idUser}`, {
             method: 'PUT',
-            body: JSON.stringify(userData)
+            body: JSON.stringify(normalizedData)
         });
         if (updatedUser) {
-            if (userData.nome !== undefined) localStorage.setItem('userName', userData.nome);
-            if (userData.email !== undefined) localStorage.setItem('userEmail', userData.email);
+            if (normalizedData.nome !== undefined) localStorage.setItem('userName', normalizedData.nome);
+            if (normalizedData.email !== undefined) localStorage.setItem('userEmail', normalizedData.email);
         }
         return updatedUser;
     }, [fetchApi]);
