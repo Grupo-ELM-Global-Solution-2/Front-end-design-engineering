@@ -258,7 +258,7 @@ Para dúvidas ou sugestões, entre em contato com a equipe de desenvolvimento at
 
 - **Repositório GitHub:** [https://github.com/Grupo-ELM-Global-Solution-2/Front-end-design-engineering](https://github.com/Grupo-ELM-Global-Solution-2/Front-end-design-engineering)
 
-- **Vídeo do YouTube:** []()
+- **Vídeo do YouTube:** [https://www.youtube.com/watch?v=h4ZO-qorKQE](https://www.youtube.com/watch?v=h4ZO-qorKQE)
 
 
 ### Link Repositórios
