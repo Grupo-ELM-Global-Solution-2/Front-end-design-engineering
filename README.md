@@ -244,7 +244,33 @@ Após iniciar o servidor de desenvolvimento:
 
 ## Screenshots / Demonstração
 
-> Adicionar aqui screenshots do sistema em funcionamento.
+![Imagem 1 - ReIntegra](public/img/imagens-projeto/imagem-1.png)
+
+![Imagem 2 - ReIntegra](public/img/imagens-projeto/imagem-2.png)
+
+![Imagem 3 - ReIntegra](public/img/imagens-projeto/imagem-3.png)
+
+![Imagem 4 - ReIntegra](public/img/imagens-projeto/imagem-4.png)
+
+![Imagem 5 - ReIntegra](public/img/imagens-projeto/imagem-5.png)
+
+![Imagem 6 - ReIntegra](public/img/imagens-projeto/imagem-6.png)
+
+![Imagem 7 - ReIntegra](public/img/imagens-projeto/imagem-7.png)
+
+![Imagem 8 - ReIntegra](public/img/imagens-projeto/imagem-8.png)
+
+![Imagem 9 - ReIntegra](public/img/imagens-projeto/imagem-9.png)
+
+![Imagem 10 - ReIntegra](public/img/imagens-projeto/imagem-10.png)
+
+![Imagem 11 - ReIntegra](public/img/imagens-projeto/imagem-11.png)
+
+![Imagem 12 - ReIntegra](public/img/imagens-projeto/imagem-12.png)
+
+![Imagem 13 - ReIntegra](public/img/imagens-projeto/imagem-13.png)
+
+![Imagem 14 - ReIntegra](public/img/imagens-projeto/imagem-14.png)
 
 ---
 
