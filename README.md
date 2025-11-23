@@ -132,6 +132,33 @@ Após iniciar o servidor de desenvolvimento:
 - **Função:** Página de avaliação de perfil.
 - **Principais funcionalidades:** Apresentação dos benefícios e funcionamento da avaliação, com redirecionamento para login/cadastro.
 
+#### `Integrantes/index.tsx`
+- **Rota:** `/integrantes`
+- **Função:** Página sobre a equipe.
+- **Principais funcionalidades:** Apresentação dos desenvolvedores e informações sobre o projeto.
+
+#### `Contato/index.tsx`
+- **Rota:** `/contato`
+- **Função:** Página de contato.
+- **Principais funcionalidades:** Formulário para entrar em contato com a equipe.
+
+#### `Faq/index.tsx`
+- **Rota:** `/faq`
+- **Função:** Perguntas frequentes.
+- **Principais funcionalidades:** Respostas para dúvidas comuns sobre a plataforma.
+
+#### `Login/index.tsx`
+- **Rota:** `/login`
+- **Função:** Autenticação de usuários.
+- **Principais funcionalidades:** Formulários de login e cadastro.
+
+---
+
+#### `Perfil/index.tsx`
+- **Rota:** `/perfil`
+- **Função:** Área do usuário.
+- **Principais funcionalidades:** Dados pessoais do usuário e cards para redirecionar para as outras páginas do sistema.
+
 #### `TrilhaPersonalizada/index.tsx`
 - **Rota:** `/trilha-personalizada`
 - **Função:** Exibição da trilha gerada.
@@ -147,24 +174,10 @@ Após iniciar o servidor de desenvolvimento:
 - **Função:** Detalhes da trilha.
 - **Principais funcionalidades:** Informações detalhadas e lista de módulos.
 
-#### `Perfil/index.tsx`
-- **Rota:** `/perfil`
-- **Função:** Área do usuário.
-- **Principais funcionalidades:** Dados pessoais do usuário e cards para redirecionar para as outras páginas do sistema.
-
-#### `Integrantes/index.tsx`
-- **Rota:** `/integrantes`
-- **Função:** Página sobre a equipe.
-- **Principais funcionalidades:** Apresentação dos desenvolvedores e informações sobre o projeto.
-
-#### `Login/index.tsx`
-- **Rota:** `/login`
-- **Função:** Autenticação de usuários.
-- **Principais funcionalidades:** Formulários de login e cadastro.
-
-#### `Contato/index.tsx` & `Faq/index.tsx`
-- **Função:** Canais de suporte e feedback.
-- **Principais funcionalidades:** Formulário de contato e perguntas frequentes.
+#### `Sugestoes/index.tsx`
+- **Rota:** `/sugestoes`
+- **Função:** Página de sugestões e feedback.
+- **Principais funcionalidades:** Permite aos usuários enviar sugestões de melhorias para a plataforma.
 
 ---
 
